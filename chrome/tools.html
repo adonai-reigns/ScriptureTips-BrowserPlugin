@@ -1,0 +1,37 @@
+<!DOCTYPE html>+
+<html>
+  <head>
+    <title>Scripture Tips - Tools</title>
+    <meta charset="UTF-8">
+    <script src="tools-app.js"></script>
+  </head>
+  <body>
+    <div>
+      <h1>Scripture Tips</h1>
+      
+      <form name="tools">
+        <button name="undo">Undo</button>
+        <button name="redo">Redo</button>
+        
+        
+        <label for="mode">Mode</label>
+        <select name="mode">
+          <option value="bb">BB Code</option>
+          <option value="html">HTML</option>
+          <option value="wml">WIKI Markup Language</option>
+        </select>
+        
+        <label for="source">Source</label>
+        <textarea name="source"></textarea>
+        
+        <label for="target">Target</label>
+        <textarea name="target"></textarea>
+        
+        <button name="process">Process</button>
+        
+      </form>
+      
+      
+    </div>
+  </body>
+</html>
