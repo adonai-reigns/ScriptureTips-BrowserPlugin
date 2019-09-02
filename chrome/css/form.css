@@ -20,14 +20,24 @@
 
 
 
-.form-field textarea, .form-field textarea:active   ,
-.form-field input, .form-field input:active{
-    border: 0.2em white solid;
+.form-field textarea,
+.form-field input{
+    border: 0.2em #FAFAFA solid;
     border-radius: 2em;
     background: rgba(255, 255, 255, 0.7);
     box-shadow: none;
     outline: 0px !important;
     padding: 0.8em;
+    color: #000000;
 }
 
+.form-field.target textarea{
+    background: rgba(233, 233, 233, 0.7);
+    border: 0.2em #EEEEEE solid;
+    color: #666666;
+}
 
+.form-field.source textarea:hover, .form-field.source textarea:focus{
+    border-color: #FFFFFF;
+    
+}
