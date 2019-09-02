@@ -1,0 +1,33 @@
+
+
+
+
+.form-field{
+    margin: 0.4em 0;
+}
+
+.form-field label{
+    display: inline-block;
+    width: 8em;
+    font-weight: bold;
+    vertical-align: top;
+}
+
+.form-field.submit{
+    
+}
+
+
+
+
+.form-field textarea, .form-field textarea:active   ,
+.form-field input, .form-field input:active{
+    border: 0.2em white solid;
+    border-radius: 2em;
+    background: rgba(255, 255, 255, 0.7);
+    box-shadow: none;
+    outline: 0px !important;
+    padding: 0.8em;
+}
+
+

@@ -1,35 +1,65 @@
-<!DOCTYPE html>+
+<!DOCTYPE html>
 <html>
   <head>
     <title>Scripture Tips - Tools</title>
     <meta charset="UTF-8">
     <script src="tools-app.js"></script>
+    <link href="css/global.css" rel="stylesheet" />
+    <link href="css/form.css" rel="stylesheet" />
+    <link href="css/page-styles.css" rel="stylesheet" />
   </head>
   <body>
-    <div>
-      <h1>Scripture Tips</h1>
+    <div class="page tools">
       
-      <form name="tools">
-        <button name="undo">Undo</button>
-        <button name="redo">Redo</button>
+      
+      
+      <header class="page-header">
+        <h1>Scripture Tips</h1>
+      
+      </header>
+      
+      
+      
+      <main class="page-main">
         
+        <form name="tools">
+          
+          <div class="form-field mode">
+            <label for="mode">Mode</label>
+            <select name="mode">
+              <option value="bb">BB Code</option>
+              <option value="html">HTML</option>
+              <option value="wml">WIKI Markup Language</option>
+            </select>
+          </div>
+          
+          <div class="form-field source">
+            <label for="source">Source</label>
+            <textarea name="source"></textarea>
+          </div>
+          
+          <div class="form-field target">
+            <label for="target">Target</label>
+            <textarea name="target" readonly></textarea>
+          </div>
+          
+          <div class="form-field submit">
+            <label>&nbsp;</label>
+            <button name="undo">Undo</button>
+            <button name="redo">Redo</button>
+            <button name="process">Process</button>
+          </div>
+          
+        </form>
         
-        <label for="mode">Mode</label>
-        <select name="mode">
-          <option value="bb">BB Code</option>
-          <option value="html">HTML</option>
-          <option value="wml">WIKI Markup Language</option>
-        </select>
-        
-        <label for="source">Source</label>
-        <textarea name="source"></textarea>
-        
-        <label for="target">Target</label>
-        <textarea name="target"></textarea>
-        
-        <button name="process">Process</button>
-        
-      </form>
+      </main>
+      
+      
+      
+      
+      <footer class="page-footer">
+        &copy; www.Adonai-Reigns.life
+      </footer>
       
       
     </div>
