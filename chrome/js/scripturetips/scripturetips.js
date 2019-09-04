@@ -10,6 +10,11 @@ var ScriptureTips = {
     bible : STBible
   },
   
+  init : function(config){
+    for(var i in this.scriptures){
+      this.scriptures[i].init(config);
+    }
+  },
   
   processText : function(text, options){
     
