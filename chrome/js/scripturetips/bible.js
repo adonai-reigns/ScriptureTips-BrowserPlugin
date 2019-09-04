@@ -110,8 +110,12 @@ var STBible = {
     
     for(var i in books){
       var bookName = books[i];
-      var bookToken = this.tokenizeString(bookName);
       var bookNameSearch = new RegExp(bookName, 'g');
+      
+      var bookToken = this.tokenizeString(bookName);
+      var tokenSearch = new RegExp(bookToken, 'g');
+      
+      // we tokenize the book names in the text, to reduce naming conflicts for similarly named books
       processedText = processedText.replace(bookNameSearch, bookToken);
       var searchPattern = this.createBooknameSearch(bookName, bookToken);
       
@@ -124,12 +128,11 @@ var STBible = {
         
         switch(generalOptions.mode){
           case 'WIKIML':
-            replacementString = '['+url+' '+detokenizedMatch+']';
+            replacementString = '['+url+' '+match+']';
             break;
             
           case 'BBCODE':
-            replacementString = '[url="'+url+'"]'+detokenizedMatch+'[/url]';
-            
+            replacementString = '[url="'+url+'"]'+match+'[/url]';
             break;
             
           case 'HTML':
@@ -147,7 +150,7 @@ var STBible = {
              // replacementString += 'onlick="'+scriptureOptions.htmlOptions.onclick+'" ';
             }
             
-            replacementString += 'href="'+url+'">'+detokenizedMatch+'</a>';
+            replacementString += 'href="'+url+'">'+match+'</a>';
             
             break;
         }
@@ -155,6 +158,18 @@ var STBible = {
         return replacementString;
       });
     }
+    
+    // deconvert the tokens into real booknames now that processing has finished
+    for(var i in books){
+      var bookName = books[i];
+      var bookToken = this.tokenizeString(bookName);
+      var tokenSearch = new RegExp(bookToken, 'g');
+      
+      processedText = processedText.replace(tokenSearch, bookName);
+      
+    }
+    
+    
     
     return processedText;
     
@@ -167,7 +182,7 @@ var STBible = {
   
   
   createBooknameSearch(bookName, bookToken){
-    return new RegExp('('+bookToken+'\\s[0-9]{1,3}[a-zA-Z]?[^a-zA-Z\.\,\(\)]*)', 'g');
+    return new RegExp('('+bookToken+'\\s[0-9]{1,3}(([0-9],[0-9])||([^a-zA-Z,\\.\\(\\)\\[\\]\\s]))*)', 'g');
   },
   
   
