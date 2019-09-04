@@ -143,7 +143,8 @@ var STBible = {
             }
             
             if(typeof scriptureOptions.htmlOptions.onlick !== 'undefined'){
-             replacementString += 'onlick="'+scriptureOptions.htmlOptions.onclick+'" ';
+             // disabled until considerations of potential XSS risks have been decided
+             // replacementString += 'onlick="'+scriptureOptions.htmlOptions.onclick+'" ';
             }
             
             replacementString += 'href="'+url+'">'+detokenizedMatch+'</a>';
