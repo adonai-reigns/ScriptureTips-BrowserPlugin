@@ -7,7 +7,8 @@ var ScriptureTips = {
   processedText : null,
   
   scriptures : {
-    bible : STBible
+    Bible : STBible
+    // @TODO: Quoran, Vedas
   },
   
   init : function(config){
@@ -21,7 +22,7 @@ var ScriptureTips = {
     this.originalText = text;
     this.processedText = text;
     
-    var scriptures = options.scriptures || [{name:'bible'}];
+    var scriptures = options.scriptures || [{name:'Bible'}];
     options.options = options.options || {};
     
     for(var i in scriptures){
@@ -43,7 +44,7 @@ var ScriptureTips = {
       // does not include a library for that scripture .. we should alert the developer
       // possible causes: typing mistake, or having not included the script that defines the library
       // scripture type must be defined in scriptureOptions as an object with a name property corresponding to the key in this.scriptures
-      // eg: [{name:'bible},{name:'quoran'},{name:'vedas'}]
+      // eg: [{name:'Bible},{name:'Quoran'},{name:'Vedas'}]
       throw "We need a valid interpreter for \""+scriptureOptions.name+"\"";
       return;
     }

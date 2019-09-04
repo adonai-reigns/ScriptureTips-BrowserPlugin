@@ -123,7 +123,7 @@ var STToolsApp = {
     var newText = ScriptureTips.processText(text, {
       scriptures : [
         {
-          name : 'bible'
+          name : 'Bible'
         }
       ],
       options : {
