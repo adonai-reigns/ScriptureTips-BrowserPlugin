@@ -3,8 +3,8 @@
 var STBible = {
   
   
-  searchUrl : 'https://www.biblegateway.com/passage/?search=ST_SEARCH_TOKEN&version=TLV',
-  searchUrlToken : 'ST_SEARCH_TOKEN',
+  searchUrl : null,
+  searchUrlToken : null,
   
   initted : false,
   tokens : {},
@@ -87,11 +87,13 @@ var STBible = {
     'Philemon'
   ],
   
-  init : function(config){
+  init : function(options){
+    this.searchUrl = options.searchUrl || 'https://www.biblegateway.com/passage/?search=ST_BIBLE_SEARCH_TOKEN&version=TLV';
+    this.searchUrlToken = options.searchUrlToken || 'ST_BIBLE_SEARCH_TOKEN';
     this.initted = true;
   },
   
-  processText : function(text, options){
+  processText : function(text, scriptureOptions, generalOptions){
     if(!this.initted){
       throw "Bible class must be initialised before it will work.";
     }
@@ -117,10 +119,10 @@ var STBible = {
       processedText = processedText.replace(searchPattern, function(match){
         var tokenSearch = new RegExp(bookToken, 'g');
         var detokenizedMatch = match.replace(tokenSearch, bookName);
-        var url = parentFunction.buildUrl(detokenizedMatch, options);
+        var url = parentFunction.buildUrl(detokenizedMatch, scriptureOptions);
         var replacementString;
         
-        switch(options.mode){
+        switch(generalOptions.mode){
           case 'WIKIML':
             replacementString = '['+url+' '+detokenizedMatch+']';
             break;
@@ -132,16 +134,16 @@ var STBible = {
             
           case 'HTML':
           default:
-            options.html = options.html || {};
-            var htmlClassname = (typeof options.html.linkClassname === 'undefined') ? '' : ' '+options.html.linkClassname;
+            scriptureOptions.htmlOptions = scriptureOptions.htmlOptions || {};
+            var htmlClassname = (typeof scriptureOptions.htmlOptions.linkClassname === 'undefined') ? '' : ' '+scriptureOptions.htmlOptions.linkClassname;
             replacementString = '<a class="scripturetips-link'+htmlClassname+'" ';
             
-            if(typeof options.html.target !== 'undefined'){
-              replacementString += 'target="'+options.html.target+'" ';
+            if(typeof scriptureOptions.htmlOptions.target !== 'undefined'){
+              replacementString += 'target="'+scriptureOptions.htmlOptions.target+'" ';
             }
             
-            if(typeof options.html.onlick !== 'undefined'){
-              replacementString += 'onlick="'+options.html.onclick+'" ';
+            if(typeof scriptureOptions.htmlOptions.onlick !== 'undefined'){
+             replacementString += 'onlick="'+scriptureOptions.htmlOptions.onclick+'" ';
             }
             
             replacementString += 'href="'+url+'">'+detokenizedMatch+'</a>';
@@ -158,8 +160,8 @@ var STBible = {
   },
   
   
-  buildUrl : function(searchPhrase, options){
-    return this.searchUrl.replace(this.searchUrlToken, encodeURI(searchPhrase), options);
+  buildUrl : function(searchPhrase){
+    return this.searchUrl.replace(this.searchUrlToken, encodeURI(searchPhrase));
   },
   
   

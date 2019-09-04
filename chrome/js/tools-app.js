@@ -67,7 +67,7 @@ var STToolsApp = {
       name : 'Initial State'
     });
     
-    ScriptureTips.init();
+    ScriptureTips.init({});
     
   },
   
@@ -97,8 +97,9 @@ var STToolsApp = {
     setTimeout(function(){
       
       var text = STToolsApp.els.source.STRead();
+      var mode = STToolsApp.els.mode[STToolsApp.els.mode.selectedIndex].value;
       
-      var newText = STToolsApp.processText(text);
+      var newText = STToolsApp.processText(text, mode);
       
       STToolsApp.els.target.STPrint(newText);
       
@@ -124,7 +125,10 @@ var STToolsApp = {
         {
           name : 'bible'
         }
-      ]
+      ],
+      options : {
+        mode : mode
+      }
     });
     
     return newText;
@@ -137,6 +141,8 @@ var STToolsApp = {
     if((STToolsApp.historyPointer+1) < STToolsApp.history.length){
       STToolsApp.history.splice(STToolsApp.historyPointer+1);
     }
+    
+    config.mode = STToolsApp.els.mode[STToolsApp.els.mode.selectedIndex].value;
     
     if(typeof config.state !== 'object'){
       config.state = {};
@@ -173,6 +179,7 @@ var STToolsApp = {
     // restore the state at this undo point
     STToolsApp.els.source.STPrint(STToolsApp.history[STToolsApp.historyPointer].state.source);
     STToolsApp.els.target.STPrint(STToolsApp.history[STToolsApp.historyPointer].state.target);
+    STToolsApp.els.mode.value = STToolsApp.history[STToolsApp.historyPointer].mode;
 
     // update the undo buttons
     STToolsApp.UI.undo.update();
@@ -191,6 +198,7 @@ var STToolsApp = {
     // restore the state at this redo point
     STToolsApp.els.source.STPrint(STToolsApp.history[STToolsApp.historyPointer].state.source);
     STToolsApp.els.target.STPrint(STToolsApp.history[STToolsApp.historyPointer].state.target);
+    STToolsApp.els.mode.value = STToolsApp.history[STToolsApp.historyPointer].mode;
     
     // update the undo buttons
     STToolsApp.UI.undo.update();
