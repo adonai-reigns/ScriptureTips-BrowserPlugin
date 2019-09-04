@@ -120,8 +120,6 @@ var STBible = {
         var url = parentFunction.buildUrl(detokenizedMatch, options);
         var replacementString;
         
-        options.mode = 'WIKIML';
-        
         switch(options.mode){
           case 'WIKIML':
             replacementString = '['+url+' '+detokenizedMatch+']';
