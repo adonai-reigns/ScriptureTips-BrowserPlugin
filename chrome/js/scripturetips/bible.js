@@ -208,8 +208,10 @@ var STBible = {
   },
   
   
-  buildUrl : function(searchPhrase){
-    return this.searchUrl.replace(this.searchUrlToken, encodeURI(searchPhrase));
+  buildUrl : function(searchPhrase, scriptureOptions){
+    var searchUrlToken = scriptureOptions.searchUrlToken || this.searchUrlToken;
+    var searchUrl = scriptureOptions.searchUrl || this.searchUrl;
+    return searchUrl.replace(searchUrlToken, encodeURI(searchPhrase));
   },
   
   

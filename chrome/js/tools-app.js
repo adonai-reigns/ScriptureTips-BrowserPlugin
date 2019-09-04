@@ -42,6 +42,9 @@ var STToolsApp = {
     // determine the mode of markup language that we are working with
     STToolsApp.els.mode = form.mode;
     
+    // which website service does the link point to?
+    STToolsApp.els.service = form.service;
+    
     // initiate the undo buttons
     STToolsApp.els.redo = form.redo;
     STToolsApp.els.undo = form.undo;
@@ -123,7 +126,8 @@ var STToolsApp = {
     var newText = ScriptureTips.processText(text, {
       scriptures : [
         {
-          name : 'Bible'
+          name : 'Bible',
+          searchUrl : STToolsApp.els.service.options[STToolsApp.els.service.selectedIndex].value
         }
       ],
       options : {
@@ -143,6 +147,7 @@ var STToolsApp = {
     }
     
     config.mode = STToolsApp.els.mode[STToolsApp.els.mode.selectedIndex].value;
+    config.service = STToolsApp.els.service[STToolsApp.els.service.selectedIndex].value;
     
     if(typeof config.state !== 'object'){
       config.state = {};
@@ -180,6 +185,7 @@ var STToolsApp = {
     STToolsApp.els.source.STPrint(STToolsApp.history[STToolsApp.historyPointer].state.source);
     STToolsApp.els.target.STPrint(STToolsApp.history[STToolsApp.historyPointer].state.target);
     STToolsApp.els.mode.value = STToolsApp.history[STToolsApp.historyPointer].mode;
+    STToolsApp.els.mode.service = STToolsApp.history[STToolsApp.historyPointer].service;
 
     // update the undo buttons
     STToolsApp.UI.undo.update();
@@ -199,6 +205,7 @@ var STToolsApp = {
     STToolsApp.els.source.STPrint(STToolsApp.history[STToolsApp.historyPointer].state.source);
     STToolsApp.els.target.STPrint(STToolsApp.history[STToolsApp.historyPointer].state.target);
     STToolsApp.els.mode.value = STToolsApp.history[STToolsApp.historyPointer].mode;
+    STToolsApp.els.mode.service = STToolsApp.history[STToolsApp.historyPointer].service;
     
     // update the undo buttons
     STToolsApp.UI.undo.update();
