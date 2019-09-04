@@ -108,6 +108,33 @@ var STBible = {
     
     var books = this.otBooks.concat(this.ntBooks);
     
+    // we do not nest links inside existing links
+    var parentFunction = this;
+    switch(generalOptions.mode){
+      case 'WIKIML':
+          processedText = processedText.replace(/(\[http[s]?:\/\/[^\]]*\])/g, function(match){
+            var token = parentFunction.tokenizeString(match, {prefix:'STEXEMPT',suffix:'TPMEXETS'});
+            return token;
+          });
+          break;
+
+        case 'BBCODE':
+          processedText = processedText.replace(/\[url([^\[]*\[\/url\])/g, function(match){
+            var token = parentFunction.tokenizeString(match, {prefix:'STEXEMPT',suffix:'TPMEXETS'});
+            return token;
+          });
+          
+          break;
+
+        case 'HTML':
+        default:
+          processedText = processedText.replace(/(<a.*?<\/a>)/g, function(match){
+            var token = parentFunction.tokenizeString(match, {prefix:'STEXEMPT',suffix:'TPMEXETS'});
+            return token;
+          });
+      
+    }
+    
     for(var i in books){
       var bookName = books[i];
       var bookNameSearch = new RegExp(bookName, 'g');
@@ -159,6 +186,13 @@ var STBible = {
       });
     }
     
+    // translate link tokens back to link tags
+    var parentFunction = this;
+    processedText = processedText.replace(/(STEXEMPT[0-9]*TPMEXETS)/g, function(match){
+      return parentFunction.detokenizeString(match);
+    });
+    
+    
     // deconvert the tokens into real booknames now that processing has finished
     for(var i in books){
       var bookName = books[i];
@@ -168,8 +202,6 @@ var STBible = {
       processedText = processedText.replace(tokenSearch, bookName);
       
     }
-    
-    
     
     return processedText;
     
@@ -186,8 +218,9 @@ var STBible = {
   },
   
   
-  tokenizeString : function(text){
-    var token = this.hashString(text);
+  tokenizeString : function(text, options){
+    options = options || {};
+    var token = this.hashString(text, options);
     this.tokens[token] = text;
     return token;
   },
@@ -196,7 +229,7 @@ var STBible = {
     return this.tokens[token];
   },
   
-  hashString : function(text){
+  hashString : function(text, options){
     var hash = 0;
     if(text.length === 0){
       return hash;
@@ -210,7 +243,11 @@ var STBible = {
       // convert to positive integer
       hash = 0-hash;
     }
-    return 'STHASH'+hash+'HSAHTS';
+    var prefix = options.prefix || 'STHASH';
+    var suffix = options.suffix || 'HSAHTS';
+    
+    
+    return prefix+hash+suffix;
   }
   
 };
