@@ -1,0 +1,10 @@
+{
+  "appName": {
+    "message": "Scripture Tips",
+    "description": "The title of the application, displayed in the web store."
+  },
+  "appDesc": {
+    "message": "A browser plugin that recognises references to scripture and converts those references into URL links.", 
+    "description":"The description of the application, displayed in the web store."
+  }
+}
