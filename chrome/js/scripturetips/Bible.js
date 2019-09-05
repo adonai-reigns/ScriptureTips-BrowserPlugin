@@ -2,91 +2,13 @@
 
 var STBible = {
   
-  
+  defaultLanguage : 'en',
   searchUrl : null,
   searchUrlToken : null,
   
   initted : false,
   tokens : {},
-  otBooks : [
-    'Genesis',
-	'Exodus',
-	'Leviticus',
-	'Numbers',
-	'Deuteronomy',
-	'Joshua',
-	'Judges',
-	'Ruth',
-	'1 Samuel',
-	'2 Samuel',
-	'1 Kings',
-	'2 Kings',
-	'1 Chronicles',
-	'2 Chronicles',
-	'Ezra',
-	'Nehemiah',
-	'Esther',
-	'Job',
-	'Psalms',
-	'Proverbs',
-	'Ecclesiastes',
-	'Songs',
-	'Isaiah',
-	'Jeremiah',
-	'Lamentations',
-	'Ezekiel',
-	'Daniel',
-	'Hosea',
-	'Joel',
-	'Amos',
-	'Obadiah',
-	'Jonah',
-	'Micah',
-	'Nahum',
-	'Habakkuk',
-	'Zephaniah',
-	'Haggai',
-	'Zechariah',
-	'Malachi'
-  ],
-  ntBooks : [
-    '1 John',
-    '2 John',
-    '3 John',
-    'Matthew',
-    'Mark',
-    'Luke',
-    'John',
-    'Acts',
-    'Romans',
-    '1 Corinthians',
-    '2 Corinthians',
-    'Galatians',
-    'Ephesians',
-    'Philippians',
-    'Colossians',
-    '1 Thessalonians',
-    '2 Thessalonians',
-    '1 Timothy',
-    '2 Timothy',
-    'Titus',
-    'Philemon',
-    'Hebrews',
-    'James',
-    '1 Peter',
-    '2 Peter',
-    'Jude',
-    'Revelation'
-  ],
-  
-  singularBooks : [
-    'Obadiah',
-    'Jude',
-    '3 John',
-    '2 John',
-    'Philemon'
-  ],
-  
+
   init : function(options){
     this.searchUrl = options.searchUrl || 'https://www.biblegateway.com/passage/?search=ST_BIBLE_SEARCH_TOKEN&version=TLV';
     this.searchUrlToken = options.searchUrlToken || 'ST_BIBLE_SEARCH_TOKEN';
@@ -98,6 +20,8 @@ var STBible = {
       throw "Bible class must be initialised before it will work.";
     }
     
+    var language = generalOptions.language || this.defaultLanguage;
+    
     // we do no destruction to the original data
     var processedText = text;
     
@@ -106,7 +30,7 @@ var STBible = {
                                   .replace(/2 John/g, this.tokenizeString('2 John'))
                                   .replace(/3 John/g, this.tokenizeString('3 John'));
     
-    var books = this.otBooks.concat(this.ntBooks);
+    var books = this.otBooks[language].concat(this.ntBooks[language]);
     
     // we do not nest links inside existing links
     var parentFunction = this;
@@ -144,7 +68,9 @@ var STBible = {
       
       // we tokenize the book names in the text, to reduce naming conflicts for similarly named books
       processedText = processedText.replace(bookNameSearch, bookToken);
-      var searchPattern = this.createBooknameSearch(bookName, bookToken);
+      
+      // this is our holy grail - the regex that finds all occurrences of a scripture reference for the given bookname
+      var searchPattern = new RegExp('('+bookToken+'\\s[0-9]{1,3}(([0-9],[0-9])||([^a-zA-Z,\\.\\(\\)\\[\\]\\s]))*)', 'g');
       
       var parentFunction = this;
       processedText = processedText.replace(searchPattern, function(match){
@@ -214,12 +140,6 @@ var STBible = {
     return searchUrl.replace(searchUrlToken, encodeURI(searchPhrase));
   },
   
-  
-  createBooknameSearch(bookName, bookToken){
-    return new RegExp('('+bookToken+'\\s[0-9]{1,3}(([0-9],[0-9])||([^a-zA-Z,\\.\\(\\)\\[\\]\\s]))*)', 'g');
-  },
-  
-  
   tokenizeString : function(text, options){
     options = options || {};
     var token = this.hashString(text, options);
@@ -250,6 +170,31 @@ var STBible = {
     
     
     return prefix+hash+suffix;
+  },
+  
+  otBooks : {
+    en : [
+      'Genesis', 'Gen.', 'Exodus', 'Ex.', 'Leviticus', 'Lev.', 'Numbers', 'Num.', 'Deuteronomy', 'Deu.', 'Joshua', 'Josh.',
+      'Judges', 'Ruth', '1 Samuel', '1 Sam.', '2 Samuel', '2 Sam.', '1 Kings', '1 Ki.', '2 Kings', '2 Ki.', '1 Chronicles', '1 Chr.',
+      '2 Chronicles', '2 Chr.', 'Ezra', 'Nehemiah', 'Neh.', 'Esther', 'Job', 'Psalms', 'Ps.', 'Proverbs', 'Pr.', 'Ecclesiastes', 'Ecc.',
+      'Songs', 'Isaiah', 'Is.', 'Jeremiah', 'Jer.', 'Lamentations', 'Lam.', 'Ezekiel', 'Ez.', 'Daniel', 'Dan.', 'Hosea', 'Joel',
+      'Amos', 'Obadiah', 'Ob.', 'Jonah', 'Micah', 'Nahum', 'Habakkuk', 'Hab.', 'Zephaniah', 'Zeph.', 'Haggai', 'Zechariah', 'Zech.',
+      'Malachi', 'Mal.'
+    ]
+  },
+  ntBooks : {
+    en : [
+      '1 John', '1 Jn.', '2 John', '2 Jn.', '3 John', '3 Jn.', 'Matthew', 'Mt.', 'Mark', 'Mk.', 'Luke', 'Lk.', 'John', 'Jn.', 'Acts',
+      'Romans', 'Rom.', '1 Corinthians', '1 Cor.', '2 Corinthians', '2 Cor.', 'Galatians', 'Gal.', 'Ephesians', 'Eph.', 'Philippians', 
+      'Colossians', 'Col.', '1 Thessalonians', '1 Thes.', '2 Thessalonians', '2 Thes.', '1 Timothy', '1 Tim.', '2 Timothy', '2 Tim.',
+      'Titus', 'Philemon', 'Hebrews', 'Heb.', 'James', '1 Peter', '1 Pt.', '2 Peter', '2 Pt.', 'Jude', 'Revelation', 'Rev'
+    ]
+  },
+  
+  singularBooks : {
+    en : [
+      'Obadiah', 'Ob.', 'Jude', '3 John', '3 Jn.', '2 John', '2 Jn.', 'Philemon'
+    ]
   }
   
 };
