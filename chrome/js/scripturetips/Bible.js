@@ -77,6 +77,8 @@ var STBible = {
         var tokenSearch = new RegExp(bookToken, 'g');
         var detokenizedMatch = match.replace(tokenSearch, bookName);
         var url = parentFunction.buildUrl(detokenizedMatch, scriptureOptions);
+        url = parentFunction.tokenizeString(url, {prefix:'STURL',suffix:'LRUTS'});
+        
         var replacementString;
         
         switch(generalOptions.mode){
@@ -128,6 +130,12 @@ var STBible = {
       processedText = processedText.replace(tokenSearch, bookName);
       
     }
+    
+    // detokenize all urls now that processing has finished
+    var parentFunction = this;
+    processedText = processedText.replace(/(STURL.*?LRUTS)/g, function(match){
+      return parentFunction.detokenizeString(match);
+    });
     
     return processedText;
     
