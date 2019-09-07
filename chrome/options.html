@@ -3,8 +3,73 @@
   <head>
     <title>Scripture Tips - Settings</title>
     <meta charset="UTF-8">
+    <script src="js/options-app.js"></script>
+    <script src="js/translations.js"></script>
+    <script src="js/translate-ui.js"></script>
+    
+    <link href="css/global.css" rel="stylesheet" />
+    <link href="css/form.css" rel="stylesheet" />
+    <link href="css/page-styles.css" rel="stylesheet" />
   </head>
   <body>
-    <div></div>
+    <div class="page options">
+      
+      <header class="page-header">
+        <h1>Scripture Tips Settings</h1>
+      </header>
+      
+      <main class="page-main">
+        
+        <form name="options">
+          
+          <div class="form-field mode">
+            <label for="mode">Default Mode</label>
+            <select name="mode">
+              <option value="BBCODE">BB Code</option>
+              <option value="HTML">HTML</option>
+              <option value="WIKIML">WIKI Markup Language</option>
+            </select>
+          </div>
+          
+          <div class="form-field mode">
+            <label for="defaultService">Default Service</label>
+            <select name="defaultService">
+              
+            </select>
+          </div>
+          
+          <div class="form-field mode">
+            <label for="servicesBible">Bible Services</label>
+            <ul id="servicesBible"></ul>
+            <button name="addBibleService" class="addBibleService">Add Bible Service</button>
+            <br />
+            ST_REFERENCE : Full scripture reference (eg: James 3:13-15).<br />
+            ST_BOOKNAME : The name of the book (eg: James). <br />
+            ST_CHAPTER : The chapter (eg: 3). <br />
+            ST_VERSE : The verses if applicable (eg: 13-15).<br /> 
+            ST_TRANSLATION : The translation as defined above.<br />
+            Examples: <br />
+            https://www.biblegateway.com/passage/?search=ST_REFERENCE&version=ST_TRANSLATION<br />
+            OR<br />
+            https://biblehub.com/ST_TRANSLATION/ST_BOOKNAME/ST_CHAPTER:ST_VERSE
+            
+            
+            
+          </div>
+          
+          
+        </form>
+        
+      </main>
+      
+      
+      
+      
+      <footer class="page-footer">
+        &copy; www.Adonai-Reigns.life
+      </footer>
+      
+      
+    </div>
   </body>
 </html>

@@ -9,6 +9,45 @@
 }
 
 
-
+.page.options ul#servicesBible{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid gray;
+}
+.page.options ul#servicesBible li{
+    border-bottom: solid 1px gray;
+    width: 60em;
+}
+.page.options label{
+    width: 10em;
+    vertical-align: middle;
+    margin: 0;
+}
+.page.options ul#servicesBible input[type=text].name{
+    width: 16em; margin-right: 4em;
+    font-weight: bold;
+    margin-top: 0.5em;
+}
+.page.options ul#servicesBible input[type=text].translation{
+    width: 4em;
+    text-align: center;
+    margin-right: 20em;
+    font-weight: bold;
+    margin-top: 0.5em;
+}
+.page.options ul#servicesBible input[type=text].url{
+    width: 60em;
+    margin-right: 0;
+    margin-top: 0.5em;
+}
+.page.options ul#servicesBible button.deleteBibleService{
+    margin-left: 15em;
+    margin-bottom: 1em;
+}
+.page.options button.addBibleService{
+    margin-left: 15em;
+    margin-bottom: 1em;
+}
 
 

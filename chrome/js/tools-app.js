@@ -41,9 +41,26 @@ var STToolsApp = {
     
     // determine the mode of markup language that we are working with
     STToolsApp.els.mode = form.mode;
+    STToolsApp.getOption('defaultMode', function(mode){
+      STToolsApp.els.mode.value = mode;
+    });
     
     // which website service does the link point to?
     STToolsApp.els.service = form.service;
+    STToolsApp.getOption('BibleServices', function(bibleServices){
+      for(var i in bibleServices){
+        var serviceOption = document.createElement('option');
+        serviceOption.value = bibleServices[i].u;
+        serviceOption.dataDefaultTranslation = bibleServices[i].t;
+        serviceOption.innerText = bibleServices[i].n;
+        form.service.append(serviceOption);
+      }
+      
+      STToolsApp.getOption('defaultService', function(service){
+        form.service.value = service;
+      });
+      
+    });
     
     // initiate the undo buttons
     STToolsApp.els.redo = form.redo;
@@ -66,9 +83,12 @@ var STToolsApp = {
       STToolsApp.process(this);
     }, false);
   
-    STToolsApp.writeUndo({
-      name : 'Initial State'
-    });
+    setTimeout(function(){
+      STToolsApp.writeUndo({
+        name : 'Initial State'
+      });
+    }, 1000);
+    
     
     ScriptureTips.init({});
     
@@ -127,7 +147,8 @@ var STToolsApp = {
       scriptures : [
         {
           name : 'Bible',
-          searchUrl : STToolsApp.els.service.options[STToolsApp.els.service.selectedIndex].value
+          searchUrl : STToolsApp.els.service.options[STToolsApp.els.service.selectedIndex].value,
+          translation : STToolsApp.els.service.options[STToolsApp.els.service.selectedIndex].dataDefaultTranslation
         }
       ],
       options : {
@@ -241,6 +262,27 @@ var STToolsApp = {
           STToolsApp.els.undo.disabled = null;
         }
       }
+    }
+  },
+  
+  
+  getOption : function(name, callbackFunction){
+    try{
+      chrome.storage.sync.get(name, function(value){
+        callbackFunction(value[name]);
+      });
+    } catch(e){
+      callbackFunction(null);
+    }
+  },
+  
+  setOption : function(name, value, callbackFunction){
+    try{
+      var option = {};
+      option[name] = value;
+      chrome.storage.sync.set(option, callbackFunction);
+    }catch(e){
+      callbackFunction(false);
     }
   }
   

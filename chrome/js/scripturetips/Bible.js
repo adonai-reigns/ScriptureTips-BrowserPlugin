@@ -10,7 +10,7 @@ var STBible = {
   tokens : {},
 
   init : function(options){
-    this.searchUrl = options.searchUrl || 'https://www.biblegateway.com/passage/?search=ST_BIBLE_SEARCH_TOKEN&version=TLV';
+    this.searchUrl = options.searchUrl || 'https://www.biblegateway.com/passage/?search=ST_REFERENCE&version=ST_TRANSLATION';
     this.searchUrlToken = options.searchUrlToken || 'ST_BIBLE_SEARCH_TOKEN';
     this.initted = true;
   },
@@ -74,9 +74,37 @@ var STBible = {
       
       var parentFunction = this;
       processedText = processedText.replace(searchPattern, function(match){
+        // derive the chapter and verse numbers distinct from the bookname
+        
+        // strip off the book name because we already have that
+        var chapterMatch = match.replace(/STHASH[0-9]*HSAHTS/g, '');
+        
+        // find the chapter number
+        var chapter = chapterMatch.match(/([^\:])*:?/g)[0];
+        
+        if(chapter.charAt(chapter.length-1) === ':'){
+          // trim the colon
+          chapter = chapter.slice(0, chapter.length-1);
+          
+          var verse = chapterMatch.replace(/([^\:])*:/g, '');
+          
+        }else{
+          // it has no verses
+          var verse = null;
+          
+        }
+        
+        // trim whitespace from front of chapter
+        while(chapter.charAt(0) === ' '){
+          chapter = chapter.slice(1);
+        }
+
         var tokenSearch = new RegExp(bookToken, 'g');
         var detokenizedMatch = match.replace(tokenSearch, bookName);
-        var url = parentFunction.buildUrl(detokenizedMatch, scriptureOptions);
+
+        var url = parentFunction.buildUrl({
+          bookName : bookName, chapter : chapter, verse : verse, fullMatch : detokenizedMatch, translation : scriptureOptions.translation
+        }, scriptureOptions);
         url = parentFunction.tokenizeString(url, {prefix:'STURL',suffix:'LRUTS'});
         
         var replacementString;
@@ -142,10 +170,15 @@ var STBible = {
   },
   
   
-  buildUrl : function(searchPhrase, scriptureOptions){
-    var searchUrlToken = scriptureOptions.searchUrlToken || this.searchUrlToken;
+  buildUrl : function(searchParts, scriptureOptions){
     var searchUrl = scriptureOptions.searchUrl || this.searchUrl;
-    return searchUrl.replace(searchUrlToken, encodeURI(searchPhrase));
+    searchUrl = searchUrl.replace('ST_REFERENCE', encodeURI(searchParts.fullMatch));
+    searchUrl = searchUrl.replace('ST_BOOKNAME', encodeURI(searchParts.bookName));
+    searchUrl = searchUrl.replace('ST_CHAPTER', encodeURI(searchParts.chapter));
+    searchUrl = searchUrl.replace('ST_VERSE', encodeURI(searchParts.verse));
+    searchUrl = searchUrl.replace('ST_TRANSLATION', encodeURI(searchParts.translation));
+    
+    return searchUrl;
   },
   
   tokenizeString : function(text, options){
