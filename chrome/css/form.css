@@ -21,23 +21,36 @@
 
 
 .form-field textarea,
-.form-field input{
-    border: 0.2em #FAFAFA solid;
-    border-radius: 2em;
+.form-field input,
+.form-field button,
+.form-field select{
+    border: 0.1em rgba(21,21,119,1) solid;
+    border-radius: 1em;
     background: rgba(255, 255, 255, 0.7);
     box-shadow: none;
     outline: 0px !important;
     padding: 0.8em;
     color: #000000;
 }
+.form-field button,
+.form-field select{
+    padding: 0.4em 0.8em;
+    border-radius: 0.7em;
+    cursor: pointer;
+}
+.form-field select:hover,
+.form-field button:hover{
+    background: rgba(21,21,119,1);
+    color: rgba(255, 255, 255, 1);
+}
 
 .form-field.target textarea{
     background: rgba(233, 233, 233, 0.7);
-    border: 0.2em #EEEEEE solid;
+    border: 0.1em rgba(21,21,119,1) solid;
     color: #666666;
 }
 
 .form-field.source textarea:hover, .form-field.source textarea:focus{
-    border-color: #FFFFFF;
+    border-color: rgba(21,21,119,1);
     
 }

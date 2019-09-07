@@ -15,7 +15,7 @@ var STOptionsApp = {
       },
       {
         n : "BlueLetterBible.org",
-        u : "https://blueletterbible.org/search/presearch.cfm?Criteria=ST_BOOKNAME%20ST_CHAPTER:ST_VERSE&t=ST_TRANSLATION",
+        u : "https://blueletterbible.org/search/presearch.cfm?Criteria=ST_REFERENCE&t=ST_TRANSLATION",
         t : "KJV"
       }
     ],
