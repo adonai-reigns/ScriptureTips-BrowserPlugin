@@ -10,6 +10,8 @@ var STTranslate = {
   changeLocale : function(locale){
     this.setLocale(locale);
     
+    STTranslate.translateEl(document.getElementsByTagName('title')[0].childNodes[0]);
+    
     var allTextNodes = STGetTextNodesIn(document.body);
     for(var i in allTextNodes){
       STTranslate.translateEl(allTextNodes[i]);
