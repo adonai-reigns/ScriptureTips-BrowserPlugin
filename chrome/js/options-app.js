@@ -43,7 +43,7 @@ var STOptionsApp = {
     
     
     form.defaultService.addEventListener('change', function(event){
-      STOptionsApp.setOption('defaultService', event.target.options[event.target.selectedIndex].value);
+      STOptionsApp.setOption('defaultService', event.target.selectedIndex);
     });
     
     
@@ -93,10 +93,10 @@ var STOptionsApp = {
       defaultService.append(serviceOption);
     }
     
-    STOptionsApp.getOption('defaultService', function(defaultServiceValue){
-      defaultService.value = defaultServiceValue;
+    STOptionsApp.getOption('defaultService', function(defaultServiceId){
+      defaultService.value = defaultService.options[defaultServiceId].value;
       if(defaultService.selectedIndex < 0){
-        // maybe it was deleted and the deletion was not written int he db
+        // maybe it was deleted and the deletion was not written in the db
         STOptionsApp.setOption('defaultService', defaultService.options[0].value);
       }
     });

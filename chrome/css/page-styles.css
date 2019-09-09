@@ -57,3 +57,38 @@
 }
 
 
+
+
+
+.page.index main{
+    position: relative;
+    padding-bottom: 2em;
+}
+
+.page.index #tipDisableDomainSelector{
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: right;
+    margin: 0;
+    padding: 0;
+}
+
+.page.index #openSettingsPageLink{
+    cursor: pointer;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    text-decoration: underline;
+    color: rgba(21,21,119,1);
+}
+
+.page.index #acknowledgementsPageLink{
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    color: rgba(21,21,119,1);
+}

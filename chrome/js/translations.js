@@ -112,7 +112,92 @@ var STTranslations = {
   },
   "Are you sure you want to delete this service?" : {
     en_GB : "Are you sure you want to delete this service?"
+  },
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  /**
+   * Index Page
+   */
+  "Scripture Tips - Index" : {
+    en_GB : "Scripture Tips"
+  },
+  " Do not process " : {
+    en_GB : " Do not process "
+  },
+  "What is it?" : {
+    en_GB : "What is it?"
+  },
+  "What is it? (p1)" : {
+    en_GB : "It's good to discuss scripture. But, it is annoying when someone is blasting scriptural references\
+        and you have to look at each one before you can give a response."
+  },
+  "What is it? (p2)" : {
+    en_GB : "ScriptureTips automatically detects scripture references in the page, and then converts them to hyperlinks\
+        so that you only need to click them."
+  },
+  "What is it? (p3)" : {
+    en_GB : "Plus, there is a form that you can use to convert the scripture references in your own writing into links\
+        before you send them to the reader."
+  },
+  "Features" : {
+    en_GB : "Features"
+  },
+  "Features (li1)" : {
+    en_GB : "Automatically converts scripture references into links"
+  },
+  "Features (li2)" : {
+    en_GB : "Customise the link URL's to use your favourite online bible"
+  },
+  "Features (li3)" : {
+    en_GB : "Converts scripture refrences in your own writing before posting online"
+  },
+  "Features (li4)" : {
+    en_GB : "Supports BBCode. Wiki Markup Language and HTML"
+  },
+  "License, Credits and Acknowledgements" : {
+    en_GB : "License, Credits and Acknowledgements"
+  },
+  
+  
+  /**
+   * Acknowledgements page
+   */
+  
+  "Scripture Tips - Acknowledgements" : {
+    en_GB : "Scripture Tips - Acknowledgements"
+  },
+  "Free Software Forever!" : {
+    en_GB : "Free Software Forever!"
+  },
+  "Free Software Forever! (p1)" : {
+    en_GB : "This is free software. It costs nothing, and it is released as a Copyleft software. That means anyone\
+        can freely use it, but nobody is allowed to make money from it."
+  },
+  "Free Software Forever! (p2)" : {
+    en_GB : "This software was made with elements that were given freely, and the original artists have\
+        only asked for an acknowledgement and a link to their portfolio:"
+  },
+  "Trustworthy: no backdoors, no snooping." : {
+    en_GB : "Trustworthy: no backdoors, no snooping."
+  },
+  "Trustworthy (p1)" : {
+    en_GB : "You give a lot of trust to the people that write software for your computer, because you are giving them permission\
+        to command your computer and to see what you do with it. If you'd like to see exactly what happens when you\
+        run this browser extension, you can read the source code on "
+  },
+  "Github" : {
+    en_GB : "Github"
   }
+  
+  
+  
   
   
   

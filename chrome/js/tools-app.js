@@ -56,8 +56,8 @@ var STToolsApp = {
         form.service.append(serviceOption);
       }
       
-      STToolsApp.getOption('defaultService', function(service){
-        form.service.value = service;
+      STToolsApp.getOption('defaultService', function(serviceId){
+        form.service.value = form.service.options[serviceId].value;
       });
       
     });
