@@ -29,10 +29,10 @@ var STContentApp = {
           
           STContentApp.BibleServices = dbResult.BibleServices;
           
-          chrome.storage.sync.get('defaultService', function(dbResult){
+          chrome.storage.sync.get('defaultBibleService', function(dbResult){
             // let's hang on to the configuration settings for forming the urls.
-            STContentApp.BibleSearchUrl = STContentApp.BibleServices[dbResult.defaultService].u;
-            STContentApp.BibleDefaultTranslation = STContentApp.BibleServices[dbResult.defaultService].t;
+            STContentApp.BibleSearchUrl = STContentApp.BibleServices[dbResult.defaultBibleService].u;
+            STContentApp.BibleDefaultTranslation = STContentApp.BibleServices[dbResult.defaultBibleService].t;
 
             // run on the whole page to begin with
             //var allTags = document.getElementsByTagName('*'); // non-jQuery (heavy, slow)

@@ -56,7 +56,7 @@ var STToolsApp = {
         form.service.append(serviceOption);
       }
       
-      STToolsApp.getOption('defaultService', function(serviceId){
+      STToolsApp.getOption('defaultBibleService', function(serviceId){
         form.service.value = form.service.options[serviceId].value;
       });
       

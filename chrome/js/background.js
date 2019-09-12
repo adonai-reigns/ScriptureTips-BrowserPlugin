@@ -73,7 +73,7 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab){
 
 chrome.runtime.onInstalled.addListener(function() {
   chrome.storage.sync.set({defaultMode : 'HTML'});
-  chrome.storage.sync.set({defaultService : 1});
+  chrome.storage.sync.set({defaultBibleService : 1});
   chrome.storage.sync.set({tipDisabledDomains : []});
   chrome.storage.sync.set({BibleServices : [
     {

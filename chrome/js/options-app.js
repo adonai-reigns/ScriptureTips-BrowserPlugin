@@ -1,7 +1,7 @@
 var STOptionsApp = {
   
   
-  defaultServices : {
+  defaultBibleServices : {
     Bible : [
       {
         n : "BibleGateway.com",
@@ -42,21 +42,19 @@ var STOptionsApp = {
     });
     
     
-    form.defaultService.addEventListener('change', function(event){
-      STOptionsApp.setOption('defaultService', event.target.selectedIndex);
+    form.defaultBibleService.addEventListener('change', function(event){
+      STOptionsApp.setOption('defaultBibleService', event.target.selectedIndex);
     });
     
     
     this.getOption('BibleServices', function(BibleServices){
       STOptionsApp.services.Bible = BibleServices || [];
       if(STOptionsApp.services.Bible.length < 1){
-        STOptionsApp.services.Bible = STOptionsApp.defaultServices.Bible;
+        STOptionsApp.services.Bible = STOptionsApp.defaultBibleServices.Bible;
       }
+      
       STOptionsApp.redrawBibleServices();
-      form.addBibleService.addEventListener('click', function(){
-        STOptionsApp.addService('', '', '');
-      });
-    
+      
     });
     
     this.getOption('QuoranServices', function(QuoranServices){
@@ -84,20 +82,20 @@ var STOptionsApp = {
       this.addBibleService(this.services.Bible[i].n, this.services.Bible[i].u, this.services.Bible[i].t, i);
     }
     
-    var defaultService = document.forms.options.defaultService;
-    defaultService.innerHTML = '';
+    var defaultBibleService = document.forms.options.defaultBibleService;
+    defaultBibleService.innerHTML = '';
     for(var i in this.services.Bible){
       var serviceOption = document.createElement('option');
       serviceOption.value = this.services.Bible[i].u;
       serviceOption.innerText = this.services.Bible[i].n;
-      defaultService.append(serviceOption);
+      defaultBibleService.append(serviceOption);
     }
     
-    STOptionsApp.getOption('defaultService', function(defaultServiceId){
-      defaultService.value = defaultService.options[defaultServiceId].value;
-      if(defaultService.selectedIndex < 0){
+    STOptionsApp.getOption('defaultBibleService', function(defaultBibleServiceId){
+      defaultBibleService.value = defaultBibleService.options[defaultBibleServiceId].value;
+      if(defaultBibleService.selectedIndex < 0){
         // maybe it was deleted and the deletion was not written in the db
-        STOptionsApp.setOption('defaultService', defaultService.options[0].value);
+        STOptionsApp.setOption('defaultBibleService', defaultBibleService.options[0].value);
       }
     });
     
@@ -109,7 +107,7 @@ var STOptionsApp = {
     STOptionsApp.services.Bible.splice(id, 1);
     if(STOptionsApp.services.Bible.length < 1){
       alert(STTranslations._('There needs to be at least one service that works!'));
-      STOptionsApp.services.Bible = STOptionsApp.defaultServices.Bible;
+      STOptionsApp.services.Bible = STOptionsApp.defaultBibleService.Bible;
     }
     STOptionsApp.setOption('BibleServices', STOptionsApp.services.Bible, function(){
       STOptionsApp.redrawBibleServices();
@@ -194,6 +192,20 @@ var STOptionsApp = {
   },
   
   
+  showOptionsTab : function(scriptureName){
+    document.getElementById('BibleTab').className.replace('active', '');
+    document.getElementById('QuoranTab').className.replace('active', '');
+    document.getElementById('VedasTab').className.replace('active', '');
+    
+    document.getElementById('tabContentBible').className = document.getElementById('tabContentBible').className.replace('active', '');
+    document.getElementById('tabContentQuoran').className = document.getElementById('tabContentQuoran').className.replace('active', '');
+    document.getElementById('tabContentVedas').className = document.getElementById('tabContentVedas').className.replace('active', '');
+    
+    document.getElementById(scriptureName+'Tab').className += ' active';
+    document.getElementById('tabContent'+scriptureName).className += ' active';
+    
+  },
+  
   getOption : function(name, callbackFunction){
     try{
       chrome.storage.sync.get(name, function(value){
@@ -219,5 +231,21 @@ var STOptionsApp = {
 
 document.addEventListener('DOMContentLoaded', function() {
   STOptionsApp.init();
+  
+  document.getElementById('BibleTab').addEventListener('click', function(){
+    STOptionsApp.showOptionsTab('Bible');
+  });
+//  document.getElementById('QuoranTab').addEventListener('click', function(){
+//    STOptionsApp.showOptionsTab('Quoran');
+//  });
+//  document.getElementById('VedasTab').addEventListener('click', function(){
+//    STOptionsApp.showOptionsTab('Vedas');
+//  });
+
+  document.getElementById('addBibleService').addEventListener('click', function(event){
+    event.preventDefault();
+    STOptionsApp.addBibleService('', '', '');
+  });
+    
 }, false);
 

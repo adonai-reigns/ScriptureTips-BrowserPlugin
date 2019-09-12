@@ -88,6 +88,11 @@ var STTranslations = {
   "Default Mode" : {
     en_GB : "Default Mode"
   },
+  
+  "Default Bible Service" : {
+    en_GB : "Default Bible Service"
+  },
+  
   "Bible Services" : {
     en_GB : "Bible Services"
   },
