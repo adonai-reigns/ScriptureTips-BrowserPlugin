@@ -61,10 +61,9 @@ var STBible = {
     
     for(var i in books){
       var bookName = books[i];
-      var bookNameSearch = new RegExp(bookName, 'g');
+      var bookNameSearch = new RegExp(bookName.replace('.', '\\\.'), 'g');
       
       var bookToken = this.tokenizeString(bookName);
-      var tokenSearch = new RegExp(bookToken, 'g');
       
       // we tokenize the book names in the text, to reduce naming conflicts for similarly named books
       processedText = processedText.replace(bookNameSearch, bookToken);
@@ -122,10 +121,13 @@ var STBible = {
           default:
             scriptureOptions.htmlOptions = scriptureOptions.htmlOptions || {};
             var htmlClassname = (typeof scriptureOptions.htmlOptions.linkClassname === 'undefined') ? '' : ' '+scriptureOptions.htmlOptions.linkClassname;
-            replacementString = '<a class="scripturetips-link'+htmlClassname+'" ';
+            replacementString = '<a class="scripturetips-link '+htmlClassname+'" ';
             
             if(typeof scriptureOptions.htmlOptions.target !== 'undefined'){
               replacementString += 'target="'+scriptureOptions.htmlOptions.target+'" ';
+            }
+            if(typeof scriptureOptions.htmlOptions.title !== 'undefined'){
+              replacementString += 'title="'+scriptureOptions.htmlOptions.title+'" ';
             }
             
             if(typeof scriptureOptions.htmlOptions.onlick !== 'undefined'){
@@ -216,25 +218,26 @@ var STBible = {
   otBooks : {
     en : [
       'Genesis', 'Gen.', 'Exodus', 'Ex.', 'Leviticus', 'Lev.', 'Numbers', 'Num.', 'Deuteronomy', 'Deu.', 'Joshua', 'Josh.',
-      'Judges', 'Ruth', '1 Samuel', '1 Sam.', '2 Samuel', '2 Sam.', '1 Kings', '1 Ki.', '2 Kings', '2 Ki.', '1 Chronicles', '1 Chr.',
-      '2 Chronicles', '2 Chr.', 'Ezra', 'Nehemiah', 'Neh.', 'Esther', 'Job', 'Psalms', 'Ps.', 'Proverbs', 'Pr.', 'Ecclesiastes', 'Ecc.',
-      'Songs', 'Isaiah', 'Is.', 'Jeremiah', 'Jer.', 'Lamentations', 'Lam.', 'Ezekiel', 'Ez.', 'Daniel', 'Dan.', 'Hosea', 'Joel',
-      'Amos', 'Obadiah', 'Ob.', 'Jonah', 'Micah', 'Nahum', 'Habakkuk', 'Hab.', 'Zephaniah', 'Zeph.', 'Haggai', 'Zechariah', 'Zech.',
+      'Judges', 'Ruth', '1 Samuel', 'I Samuel', '1 Sam.', '2 Samuel', 'II Samuel', '2 Sam.', '1 Kings', 'I Kings', '1 Ki.', '2 Kings', 'II Kings', '2 Ki.',
+      '1 Chronicles', 'I Chronicles', '1 Chr.', '2 Chronicles', 'II Chronicles', '2 Chr.', 'Ezra', 'Nehemiah', 'Neh.', 'Esther', 'Job', 'Psalms', 'Ps.', 
+      'Proverbs', 'Pr.', 'Ecclesiastes', 'Ecc.', 'Songs', 'Isaiah', 'Is.', 'Jeremiah', 'Jer.', 'Lamentations', 'Lam.', 'Ezekiel', 'Ez.', 'Daniel', 'Dan.', 
+      'Hosea', 'Joel', 'Amos', 'Obadiah', 'Ob.', 'Jonah', 'Micah', 'Nahum', 'Habakkuk', 'Hab.', 'Zephaniah', 'Zeph.', 'Haggai', 'Zechariah', 'Zech.',
       'Malachi', 'Mal.'
     ]
   },
   ntBooks : {
     en : [
-      '1 John', '1 Jn.', '2 John', '2 Jn.', '3 John', '3 Jn.', 'Matthew', 'Mt.', 'Mark', 'Mk.', 'Luke', 'Lk.', 'John', 'Jn.', 'Acts',
-      'Romans', 'Rom.', '1 Corinthians', '1 Cor.', '2 Corinthians', '2 Cor.', 'Galatians', 'Gal.', 'Ephesians', 'Eph.', 'Philippians', 
-      'Colossians', 'Col.', '1 Thessalonians', '1 Thes.', '2 Thessalonians', '2 Thes.', '1 Timothy', '1 Tim.', '2 Timothy', '2 Tim.',
-      'Titus', 'Philemon', 'Hebrews', 'Heb.', 'James', '1 Peter', '1 Pt.', '2 Peter', '2 Pt.', 'Jude', 'Revelation', 'Rev'
+      '1 John', 'I John', '1 Jn.', '2 John', 'II John', '2 Jn.', '3 John', 'III John', '3 Jn.', 'Matthew', 'Mt.', 'Mark', 'Mk.', 'Luke', 'Lk.', 'John', 'Jn.', 
+      'Acts', 'Romans', 'Rom.', '1 Corinthians', 'I Corinthians', '1 Cor.', '2 Corinthians', 'II Corinthians', '2 Cor.', 'Galatians', 'Gal.', 'Ephesians', 'Eph.', 
+      'Philippians', 'Colossians', 'Col.', '1 Thessalonians', 'I Thessalonians', '1 Thes.', '2 Thessalonians', 'II Thessalonians', '2 Thes.', '1 Timothy', 'I Timothy',
+      '1 Tim.', '2 Timothy', 'II Timothy', '2 Tim.', 'Titus', 'Philemon', 'Hebrews', 'Heb.', 'James', '1 Peter', 'I Peter', '1 Pt.', '2 Peter', 'II Peter', '2 Pt.', 
+      'Jude', 'Revelation', 'Rev'
     ]
   },
   
   singularBooks : {
     en : [
-      'Obadiah', 'Ob.', 'Jude', '3 John', '3 Jn.', '2 John', '2 Jn.', 'Philemon'
+      'Obadiah', 'Ob.', 'Jude', '3 John', 'III John', '3 Jn.', '2 John', 'II John', '2 Jn.', 'Philemon'
     ]
   }
   
