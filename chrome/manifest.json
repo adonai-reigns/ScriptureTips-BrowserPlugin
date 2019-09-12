@@ -21,7 +21,7 @@
         {
             "matches": ["<all_urls>"],
             "exclude_globs" : [
-                
+                "*://*google.com/*"
             ],
             "css": ["css/content-scripts/scripturetips.css"],
             "js": ["js/scripturetips/Bible.js", "js/scripturetips/scripturetips.js","js/content-scripts/jquery-3.4.1.min.js", "js/content-scripts/scripturetips.js"],
