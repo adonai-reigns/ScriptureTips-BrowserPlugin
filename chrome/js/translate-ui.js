@@ -1,7 +1,7 @@
 var STTranslate = {
   
-  defaultLocale : 'en_US',
-  locale : 'en_US',
+  defaultLocale : 'en_GB',
+  locale : 'en_GB',
   
   setLocale : function(locale){
     this.locale = locale.replace('-', '_');
@@ -54,7 +54,7 @@ var STTranslate = {
         // send the element to be processed with a specified locale of the user's current setting
         if(!STTranslations[el.stTranslateSys][this.locale]){
           // no translations available for the user's locale, fall back to default locale
-          return this.translateEl(el, this.locale);
+          return this.translateEl(el, this.defaultLocale);
         }else{
           el.nodeValue = STTranslations[el.stTranslateSys][this.locale];
           el.stTranslate = this.locale;
