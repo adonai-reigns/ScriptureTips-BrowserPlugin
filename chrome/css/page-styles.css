@@ -5,7 +5,7 @@ body.tools, body.index, body.acknowledgements{
 
 .page.tools .form-field.source textarea,
 .page.tools .form-field.target textarea{
-    width: 40em;
+    width: 38em;
     height: 12em;
 }
 .page.tools .form-field{

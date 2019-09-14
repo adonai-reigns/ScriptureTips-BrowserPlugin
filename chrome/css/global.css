@@ -24,16 +24,32 @@ a:visited{
 .page-header{
     border-bottom: solid 1px gray;
     text-align: center;
+    position: relative;
+}
+
+.page-header .tools-link{
+    position: absolute;
+    right: 24px;
+    top: 0;
+    height: 48px;
+    width: 48px;
+    display: block;
+}
+.page-header .tools-link img{
+    height: 100%;
+    width: 100%;
 }
 
 .page-header h1{
 /*    font: normal 79px "aclonica", Helvetica, sans-serif;*/
     font: bold 2em Arial;
     line-height: 1.2;
-    padding: 0 0 0 1em;
+    padding: 0 0 0 1.7em;
     margin: 0.2em 0;
     color: rgba(21,21,119,1);
     text-align: left;
+    background: url('../images/site/header-icon-60.png') no-repeat 0.4em 0.1em;
+    background-size: 0.9em 0.9em;
 }
 
 .page-header h1 a{
@@ -45,7 +61,7 @@ a:visited{
 }
 
 .page-main{
-    margin: 0 2em;
+    margin: 0 3.5em;
 }
 
 .page-footer{
@@ -53,4 +69,14 @@ a:visited{
     position: fixed;
     bottom: 0;
     text-align: center;
+    font-size: 0.9em;
+    text-transform: uppercase;
+    font-family: monospace;
+    font-weight: bold;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.6);
+    padding: 0.1em 0;
+}
+.page-footer a{
+    color: rgba(21,21,119,1);
 }
