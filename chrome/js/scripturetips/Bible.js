@@ -34,30 +34,19 @@ var STBible = {
     
     // we do not nest links inside existing links
     var parentFunction = this;
-    switch(generalOptions.mode){
-      case 'WIKIML':
-          processedText = processedText.replace(/(\[http[s]?:\/\/[^\]]*\])/g, function(match){
-            var token = parentFunction.tokenizeString(match, {prefix:'STEXEMPT',suffix:'TPMEXETS'});
-            return token;
-          });
-          break;
+    processedText = processedText.replace(/(\[http[s]?:\/\/[^\]]*\])/g, function(match){
+      var token = parentFunction.tokenizeString(match, {prefix:'STEXEMPT',suffix:'TPMEXETS'});
+      return token;
+    });
+    processedText = processedText.replace(/\[url([^\[]*\[\/url\])/g, function(match){
+      var token = parentFunction.tokenizeString(match, {prefix:'STEXEMPT',suffix:'TPMEXETS'});
+      return token;
+    });
+    processedText = processedText.replace(/(<a.*?<\/a>)/g, function(match){
+      var token = parentFunction.tokenizeString(match, {prefix:'STEXEMPT',suffix:'TPMEXETS'});
+      return token;
+    });
 
-        case 'BBCODE':
-          processedText = processedText.replace(/\[url([^\[]*\[\/url\])/g, function(match){
-            var token = parentFunction.tokenizeString(match, {prefix:'STEXEMPT',suffix:'TPMEXETS'});
-            return token;
-          });
-          
-          break;
-
-        case 'HTML':
-        default:
-          processedText = processedText.replace(/(<a.*?<\/a>)/g, function(match){
-            var token = parentFunction.tokenizeString(match, {prefix:'STEXEMPT',suffix:'TPMEXETS'});
-            return token;
-          });
-      
-    }
     
     for(var i in books){
       var bookName = books[i];
