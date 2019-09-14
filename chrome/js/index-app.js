@@ -15,8 +15,6 @@ var STIndexApp = {
           document.getElementById('tipDisableDomainName').innerText = urlFindings[2];
           document.getElementById('tipDisableDomainSelector').style.display = 'block';
           
-        }else{
-          STBackgroundApp.currentDomain = '';
         }
         
         chrome.runtime.sendMessage({name : 'getSTBackgroundAppData'}, function(STBackgroundAppData){
