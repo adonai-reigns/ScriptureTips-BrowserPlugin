@@ -208,7 +208,7 @@ var STBible = {
     en : [
       'Genesis', 'Gen.', 'Exodus', 'Ex.', 'Leviticus', 'Lev.', 'Numbers', 'Num.', 'Deuteronomy', 'Deu.', 'Joshua', 'Josh.',
       'Judges', 'Ruth', '1 Samuel', 'I Samuel', '1 Sam.', '2 Samuel', 'II Samuel', '2 Sam.', '1 Kings', 'I Kings', '1 Ki.', '2 Kings', 'II Kings', '2 Ki.',
-      '1 Chronicles', 'I Chronicles', '1 Chr.', '2 Chronicles', 'II Chronicles', '2 Chr.', 'Ezra', 'Nehemiah', 'Neh.', 'Esther', 'Job', 'Psalms', 'Ps.', 
+      '1 Chronicles', 'I Chronicles', '1 Chr.', '2 Chronicles', 'II Chronicles', '2 Chr.', 'Ezra', 'Nehemiah', 'Neh.', 'Esther', 'Job', 'Psalms', 'Psalm', 'Ps.', 
       'Proverbs', 'Pr.', 'Ecclesiastes', 'Ecc.', 'Songs', 'Isaiah', 'Is.', 'Jeremiah', 'Jer.', 'Lamentations', 'Lam.', 'Ezekiel', 'Ez.', 'Daniel', 'Dan.', 
       'Hosea', 'Joel', 'Amos', 'Obadiah', 'Ob.', 'Jonah', 'Micah', 'Nahum', 'Habakkuk', 'Hab.', 'Zephaniah', 'Zeph.', 'Haggai', 'Zechariah', 'Zech.',
       'Malachi', 'Mal.'
