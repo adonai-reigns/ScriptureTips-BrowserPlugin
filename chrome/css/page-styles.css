@@ -127,7 +127,7 @@ body.tools, body.index, body.acknowledgements{
     display: none;
     position: absolute;
     top: 0;
-    left: 0;
+    right: -44px;
     width: 100%;
     text-align: right;
     margin: 0;
