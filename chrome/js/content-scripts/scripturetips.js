@@ -4,16 +4,35 @@ var STContentApp = {
   BibleServices : null,
   BibleSearchUrl : "",
   BibleDefaultTranslation : "",
+  scriptureTipsOptions : {},
   
   // elements that do not get processed
   excludedTags : ['A', 'TEXTAREA', 'HEAD', 'INPUT', 'IFRAME', 'SCRIPT', 'META', 'HEAD', 
-    'TIME', 'UL', 'HTML', 'BODY', 'TITLE', 'LINK', 'STYLE', 'IMG', 'BR', 'SPAN', 'BLOCKQUOTE',
+    'TIME', 'UL', 'HTML', 'BODY', 'TITLE', 'LINK', 'STYLE', 'IMG', 'BR', 'BLOCKQUOTE',
     'B', 'STRONG', 'I', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'FORM'],
   
   // for debugging
   countedList : {},
   
   init : function(){
+    
+    this.scriptureTipsOptions = {
+      scriptures : [
+        {
+          name : 'Bible',
+          searchUrl : STContentApp.BibleSearchUrl,
+          translation : STContentApp.BibleDefaultTranslation,
+          htmlOptions : {
+            target : "_blank",
+            title : "(Link Created by Scripture Tips)"
+          }
+        } // @TODO: Quoran, Vedas
+      ],
+      options : {
+        mode : 'HTML'
+      }
+
+    };
     
     ScriptureTips.init({});
     
@@ -49,7 +68,7 @@ var STContentApp = {
               
               mutations.forEach(function(mutation) {
                 mutation.addedNodes.forEach(function(node){
-                  STContentApp.processNode(node);
+                    STContentApp.processNode(node);
                 });
               });
             
@@ -79,13 +98,19 @@ var STContentApp = {
   
   
   processNode : function(node){
-
+    
     if(node.dataScripturetipsProcessed > 0){
       // not going to process it a second time
       return;
     }
     if(STContentApp.excludedTags.indexOf(node.tagName) > -1){
       // we exclude processing on elements that do not carry scripture references
+      return;
+    }
+    
+    if(!ScriptureTips.preProcessValidation(node.innerHTML, STContentApp.scriptureTipsOptions)){
+      // we do not process this node because it does not contain scripture references
+      node.dataScripturetipsProcessed = "1";
       return;
     }
     
@@ -96,35 +121,39 @@ var STContentApp = {
     STContentApp.countedList[node.tagName]++;
     // end for debugging
     
-    if(typeof node.innerHTML !== 'undefined'){
-      
+    // if it's a text node, so we don't want any trouble!
+    var numChildren = 0;
+    
+    if(typeof node.children !== 'undefined'){
+      var numChildren = node.children.length*1;
+    }
+    
+    if(numChildren > 0){
+      // operate on child nodes independently, so as to not overwrite dynamically created event listeners when overwriting innerHTML
+
+      for(var i =0; i<node.children.length; i++){
+        STContentApp.processNode(node.children[i]);
+      }
+
       node.dataScripturetipsProcessed = "1";
       
-      var newContent = ScriptureTips.processText(node.innerHTML, {
-        scriptures : [
-          {
-            name : 'Bible',
-            searchUrl : STContentApp.BibleSearchUrl,
-            translation : STContentApp.BibleDefaultTranslation,
-            htmlOptions : {
-              target : "_blank",
-              title : "(Link Created by Scripture Tips)"
-            }
-          } // @TODO: Quoran, Vedas
-        ],
-        options : {
-          mode : 'HTML'
-        }
-        
-      });
+    }else{
+      // this node has no child nodes
       
-      if(newContent !== node.innerHTML){
-        // only update the dom if we are changing the content
-        node.innerHTML = newContent;
-      }
-      
-    };
+      if(typeof node.innerHTML !== 'undefined'){
 
+        node.dataScripturetipsProcessed = "1";
+
+        var newContent = ScriptureTips.processText(node.innerHTML, STContentApp.scriptureTipsOptions);
+
+        if(newContent !== node.innerHTML){
+          // only update the dom if we are changing the content
+          node.innerHTML = newContent;
+        }
+
+      };
+    }
+    
   }
   
 };

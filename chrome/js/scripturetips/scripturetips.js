@@ -17,6 +17,22 @@ var ScriptureTips = {
     }
   },
   
+  /**
+   * Check whether text should be processed or not.
+   * Use this on the innerHTML of the root-most node, to save doing recursive processing through each child-nodes, where it would be pointless.
+   * It saves doing recursive processing where it is not used.
+   * @param {type} text
+   * @param {type} options
+   * @returns boolean
+   */
+  preProcessValidation : function(text, options){
+    if(typeof text !== 'string'){
+      return false;
+    }
+    var newText = ScriptureTips.processText(text, options);
+    return (newText !== text);
+  },
+  
   processText : function(text, options){
     
     this.originalText = text;
