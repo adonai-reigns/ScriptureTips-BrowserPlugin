@@ -140,7 +140,7 @@ var STTranslations = {
     en_GB : "What is it?"
   },
   "What is it? (p1)" : {
-    en_GB : "It's good to discuss scripture. But, it takes time to look up every scriptural reference\
+    en_GB : "It's good to discuss scripture, but it takes time to look up every scriptural reference\
         before we can give a response."
   },
   "What is it? (p2)" : {
@@ -164,7 +164,7 @@ var STTranslations = {
     en_GB : "Converts scripture refrences in your own writing before posting online"
   },
   "Features (li4)" : {
-    en_GB : "Supports BBCode. Wiki Markup Language and HTML"
+    en_GB : "Supports BBCode, Wiki Markup Language and HTML"
   },
   "License, Credits and Acknowledgements" : {
     en_GB : "License, Credits and Acknowledgements"
