@@ -140,8 +140,8 @@ var STTranslations = {
     en_GB : "What is it?"
   },
   "What is it? (p1)" : {
-    en_GB : "It's good to discuss scripture. But, it is annoying when someone is blasting scriptural references\
-        and you have to look at each one before you can give a response."
+    en_GB : "It's good to discuss scripture. But, it takes time to look up every scriptural reference\
+        before we can give a response."
   },
   "What is it? (p2)" : {
     en_GB : "ScriptureTips automatically detects scripture references in the page, and then converts them to hyperlinks\
