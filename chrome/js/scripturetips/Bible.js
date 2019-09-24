@@ -58,7 +58,7 @@ var STBible = {
       processedText = processedText.replace(bookNameSearch, bookToken);
       
       // this is our holy grail - the regex that finds all occurrences of a scripture reference for the given bookname
-      var searchPattern = new RegExp('('+bookToken+'\\s[0-9]{1,3}(([0-9],[0-9])||([^a-zA-Z,\\.\\(\\)\\[\\]\\s]))*)', 'g');
+      var searchPattern = new RegExp('('+bookToken+'\\s[0-9]{1,3}(([0-9],[0-9])||([^a-zA-Z,\\.\\(\\)\\[\\]\\s\\<]))*)', 'g');
       
       var parentFunction = this;
       processedText = processedText.replace(searchPattern, function(match){
