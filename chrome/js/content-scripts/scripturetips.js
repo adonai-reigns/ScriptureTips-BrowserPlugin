@@ -57,7 +57,7 @@ var STContentApp = {
             //var allTags = document.getElementsByTagName('*'); // non-jQuery (heavy, slow)
             
             // let's grab every node that can contain scripture references, and that doesn't have child nodes
-            var allTags = $('li, div:not(:has(*))').get();
+            var allTags = $('li, div:not(:has(div))').get();
             
             for(var i = 0; i<allTags.length; i++){
               STContentApp.processNode(allTags[i]);
@@ -134,6 +134,13 @@ var STContentApp = {
       for(var i =0; i<node.children.length; i++){
         STContentApp.processNode(node.children[i]);
       }
+      
+      // now finally process the text that does not abide in child nodes
+      $($(node).contents().filter(function(){ 
+        return this.nodeType == 3; 
+      })[0]).each(function(){
+        $(this).replaceWith(ScriptureTips.processText(this.nodeValue, STContentApp.scriptureTipsOptions));
+      });
 
       node.dataScripturetipsProcessed = "1";
       
