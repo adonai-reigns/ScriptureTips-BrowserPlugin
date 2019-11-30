@@ -219,7 +219,7 @@ var STBible = {
       '1 John', 'I John', '1 Jn.', '2 John', 'II John', '2 Jn.', '3 John', 'III John', '3 Jn.', 'Matthew', 'Mt.', 'Mark', 'Mk.', 'Luke', 'Lk.', 'John', 'Jn.', 
       'Acts', 'Romans', 'Rom.', '1 Corinthians', 'I Corinthians', '1 Cor.', '2 Corinthians', 'II Corinthians', '2 Cor.', 'Galatians', 'Gal.', 'Ephesians', 'Eph.', 
       'Philippians', 'Colossians', 'Col.', '1 Thessalonians', 'I Thessalonians', '1 Thes.', '2 Thessalonians', 'II Thessalonians', '2 Thes.', '1 Timothy', 'I Timothy',
-      '1 Tim.', '2 Timothy', 'II Timothy', '2 Tim.', 'Titus', 'Philemon', 'Hebrews', 'Heb.', 'James', '1 Peter', 'I Peter', '1 Pt.', '2 Peter', 'II Peter', '2 Pt.', 
+      '1 Tim.', 'I Tim.', '2 Timothy', 'II Timothy', '2 Tim.', 'II Tim.', 'Titus', 'Philemon', 'Hebrews', 'Heb.', 'James', '1 Peter', 'I Peter', '1 Pt.', '2 Peter', 'II Peter', '2 Pt.', 
       'Jude', 'Revelation', 'Rev'
     ]
   },
