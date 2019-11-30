@@ -206,7 +206,7 @@ var STBible = {
   
   otBooks : {
     en : [
-      'Genesis', 'Gen.', 'Exodus', 'Ex.', 'Leviticus', 'Lev.', 'Numbers', 'Num.', 'Deuteronomy', 'Deu.', 'Joshua', 'Josh.',
+      'Genesis', 'Gen.', 'Exodus', 'Ex.', 'Leviticus', 'Lev.', 'Numbers', 'Num.', 'Deuteronomy', 'Deu.', 'Deut.', 'Joshua', 'Josh.',
       'Judges', 'Ruth', '1 Samuel', 'I Samuel', '1 Sam.', '2 Samuel', 'II Samuel', '2 Sam.', '1 Kings', 'I Kings', '1 Ki.', '2 Kings', 'II Kings', '2 Ki.',
       '1 Chronicles', 'I Chronicles', '1 Chr.', '2 Chronicles', 'II Chronicles', '2 Chr.', 'Ezra', 'Nehemiah', 'Neh.', 'Esther', 'Job', 'Psalms', 'Psalm', 'Ps.', 
       'Proverbs', 'Pr.', 'Ecclesiastes', 'Ecc.', 'Songs', 'Isaiah', 'Is.', 'Jeremiah', 'Jer.', 'Lamentations', 'Lam.', 'Ezekiel', 'Ez.', 'Daniel', 'Dan.', 
@@ -219,8 +219,8 @@ var STBible = {
       '1 John', 'I John', '1 Jn.', '2 John', 'II John', '2 Jn.', '3 John', 'III John', '3 Jn.', 'Matthew', 'Mt.', 'Mark', 'Mk.', 'Luke', 'Lk.', 'John', 'Jn.', 
       'Acts', 'Romans', 'Rom.', '1 Corinthians', 'I Corinthians', '1 Cor.', '2 Corinthians', 'II Corinthians', '2 Cor.', 'Galatians', 'Gal.', 'Ephesians', 'Eph.', 
       'Philippians', 'Colossians', 'Col.', '1 Thessalonians', 'I Thessalonians', '1 Thes.', '2 Thessalonians', 'II Thessalonians', '2 Thes.', '1 Timothy', 'I Timothy',
-      '1 Tim.', 'I Tim.', '2 Timothy', 'II Timothy', '2 Tim.', 'II Tim.', 'Titus', 'Philemon', 'Hebrews', 'Heb.', 'James', '1 Peter', 'I Peter', '1 Pt.', '2 Peter', 'II Peter', '2 Pt.', 
-      'Jude', 'Revelation', 'Rev'
+      '1 Tim.', 'I Tim.', '2 Timothy', 'II Timothy', '2 Tim.', 'II Tim.', 'Titus', 'Philemon', 'Hebrews', 'Heb.', 'James', '1 Peter', 'I Peter', '1 Pt.', '2 Peter', 'II Peter', '2 Pt.', 'I Pet.', 'II Pet.',
+      'Jude', 'Revelation', 'Rev.', 'Rev'
     ]
   },
   
