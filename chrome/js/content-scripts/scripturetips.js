@@ -8,7 +8,7 @@ var STContentApp = {
   
   // elements that do not get processed
   excludedTags : ['A', 'TEXTAREA', 'HEAD', 'INPUT', 'IFRAME', 'SCRIPT', 'META', 'HEAD', 
-    'TIME', 'UL', 'HTML', 'BODY', 'TITLE', 'LINK', 'STYLE', 'IMG', 'BR', 'BLOCKQUOTE',
+    'TIME', 'UL', 'HTML', 'BODY', 'TITLE', 'LINK', 'STYLE', 'IMG', 'BR', 
     'B', 'STRONG', 'I', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'FORM'],
   
   // for debugging
@@ -57,7 +57,7 @@ var STContentApp = {
             //var allTags = document.getElementsByTagName('*'); // non-jQuery (heavy, slow)
             
             // let's grab every node that can contain scripture references, and that doesn't have child nodes
-            var allTags = $('li, div:not(:has(div))').get();
+            var allTags = $('td, li, div:not(:has(div))').get();
             
             for(var i = 0; i<allTags.length; i++){
               STContentApp.processNode(allTags[i]);
@@ -136,9 +136,9 @@ var STContentApp = {
       }
       
       // now finally process the text that does not abide in child nodes
-      $($(node).contents().filter(function(){ 
+      $($(node).contents().filter(function(){
         return this.nodeType == 3; 
-      })[0]).each(function(){
+      })).each(function(){
         $(this).replaceWith(ScriptureTips.processText(this.nodeValue, STContentApp.scriptureTipsOptions));
       });
 
