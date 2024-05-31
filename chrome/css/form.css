@@ -1,31 +1,23 @@
-
-
-
-
-.form-field{
+/**
+ * ScriptureTips Browser Plugin - form styles
+ */
+.form-field {
     display: block;
     margin: 0.5em 0 0 0;
     padding: 0.4em 0;
 }
 
-.form-field label{
+.form-field label {
     display: block;
     width: 6.5em;
     font-weight: bold;
 }
 
-.form-field.submit{
-    
-}
-
-
-
-
 .form-field textarea,
 .form-field input,
 .form-field button,
-.form-field select{
-    border: 0.1em rgba(21,21,119,1) solid;
+.form-field select {
+    border: 0.1em rgba(21, 21, 119, 1) solid;
     border-radius: 1em;
     background: rgba(255, 255, 255, 0.7);
     box-shadow: none;
@@ -33,25 +25,28 @@
     padding: 0.8em;
     color: #000000;
 }
+
 .form-field button,
-.form-field select{
+.form-field select {
     padding: 0.4em 0.8em;
     border-radius: 0.7em;
     cursor: pointer;
 }
+
 .form-field select:hover,
-.form-field button:hover{
-    background: rgba(21,21,119,1);
+.form-field button:hover {
+    background: rgba(21, 21, 119, 1);
     color: rgba(255, 255, 255, 1);
 }
 
-.form-field.target textarea{
+.form-field.target textarea {
     background: rgba(233, 233, 233, 0.7);
-    border: 0.1em rgba(21,21,119,1) solid;
+    border: 0.1em rgba(21, 21, 119, 1) solid;
     color: #666666;
 }
 
-.form-field.source textarea:hover, .form-field.source textarea:focus{
-    border-color: rgba(21,21,119,1);
-    
+.form-field.source textarea:hover,
+.form-field.source textarea:focus {
+    border-color: rgba(21, 21, 119, 1);
+
 }

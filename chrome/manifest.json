@@ -1,43 +1,47 @@
 {
-  "manifest_version": 3,
-  "default_locale" : "en",
-  "name": "__MSG_appName__",
-  "description": "__MSG_appDesc__",
-  "version": "1.0.3",
-  "options_page" : "options.html",
-  "icons" : {
-        "16" : "icon-16.png",
-        "48" : "icon-48.png",
-        "128" : "icon-128.png"
-  },
-  "action": {
-   "default_popup": "index.html"
-  },
-  "permissions": [
+    "manifest_version": 3,
+    "default_locale": "en",
+    "name": "__MSG_appName__",
+    "description": "__MSG_appDesc__",
+    "version": "1.0.3",
+    "options_page": "options.html",
+    "icons": {
+        "16": "icon-16.png",
+        "48": "icon-48.png",
+        "128": "icon-128.png"
+    },
+    "action": {
+        "default_popup": "index.html"
+    },
+    "permissions": [
         "storage",
         "tabs",
         "activeTab"
-   ],
-   "background" : {
-        "service_worker" : "js/service-worker.js"
-   },
-   "content_scripts": [
+    ],
+    "background": {
+        "service_worker": "js/service-worker.js"
+    },
+    "content_scripts": [
         {
-            "matches": ["<all_urls>"],
-            "exclude_globs" : [
+            "matches": [
+                "<all_urls>"
+            ],
+            "exclude_globs": [
                 "*://*google.com/*"
             ],
-            "css": ["css/content-scripts/scripturetips.css"],
+            "css": [
+                "css/content-scripts/scripturetips.css"
+            ],
             "js": [
-                "js/scripturetips/Bible.js", 
+                "js/scripturetips/Bible.js",
                 "js/scripturetips/scripturetips.js",
-                "js/content-scripts/jquery-3.4.1.min.js", 
+                "js/content-scripts/jquery-3.4.1.min.js",
                 "js/content-scripts/scripturetips.js"
             ],
-            "all_frames" : true
+            "all_frames": true
         }
     ],
-    "web_accessible_resources" : [
+    "web_accessible_resources": [
         {
             "resources": [
                 "css/content-scripts/*.png"

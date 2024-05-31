@@ -1,6 +1,7 @@
-
-
-a.scripturetips-link{
+/**
+ * ScriptureTips Browser Plugin - styles in tab page content
+ */
+a.scripturetips-link {
     background: url('chrome-extension://__MSG_@@extension_id__/css/content-scripts/link-icon.png') no-repeat right center !important;
     background-size: 12px 12px !important;
     padding-right: 14px !important;

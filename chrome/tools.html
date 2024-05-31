@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <title>Scripture Tips - Tools</title>
     <meta charset="UTF-8">
     <script src="js/scripturetips/Bible.js"></script>
@@ -8,77 +9,70 @@
     <script src="js/tools-app.js"></script>
     <script src="js/translations.js"></script>
     <script src="js/translate-ui.js"></script>
-    
+
     <link href="css/global.css" rel="stylesheet" />
     <link href="css/form.css" rel="stylesheet" />
     <link href="css/page-styles.css" rel="stylesheet" />
-  </head>
-  <body class="tools">
+</head>
+
+<body class="tools">
     <div class="page tools">
-      
-      
-      
-      <header class="page-header">
-        <h1>Scripture Tips</h1>
-        <a href="options.html" title="Options" class="tools-link">
-            <img src="images/site/settings-icon-60.png" alt="Icon" width="64" height="64" />
-        </a>
-      </header>
-      
-      
-      
-      <main class="page-main">
-        
-        <form name="tools">
-          
-          <div class="form-field mode">
-            <label for="mode">Mode</label>
-            <select name="mode" id="mode">
-              <option value="BBCODE">BB Code</option>
-              <option value="HTML">HTML</option>
-              <option value="WIKIML">WIKI Markup Language</option>
-            </select>
-          </div>
-          
-          <div class="form-field mode">
-            <label for="service">Service</label>
-            <select name="service" id="service">
-              <!--option value="https://www.biblegateway.com/passage/?search=ST_BIBLE_SEARCH_TOKEN&version=TLV">BibleGateway</option>
+
+        <header class="page-header">
+            <h1>Scripture Tips</h1>
+            <a href="options.html" title="Options" class="tools-link">
+                <img src="images/site/settings-icon-60.png" alt="Icon" width="64" height="64" />
+            </a>
+        </header>
+
+        <main class="page-main">
+
+            <form name="tools">
+
+                <div class="form-field mode">
+                    <label for="mode">Mode</label>
+                    <select name="mode" id="mode">
+                        <option value="BBCODE">BB Code</option>
+                        <option value="HTML">HTML</option>
+                        <option value="WIKIML">WIKI Markup Language</option>
+                    </select>
+                </div>
+
+                <div class="form-field mode">
+                    <label for="service">Service</label>
+                    <select name="service" id="service">
+                        <!--option value="https://www.biblegateway.com/passage/?search=ST_BIBLE_SEARCH_TOKEN&version=TLV">BibleGateway</option>
               <option value="https://biblemenus.com/search.php?q=ST_BIBLE_SEARCH_TOKEN">BibleHub</option>
               <option value="https://blueletterbible.org/search/presearch.cfm?Criteria=ST_BIBLE_SEARCH_TOKEN&t=KJV">Blue Letter Bible</option-->
-              
-            </select>
-          </div>
-          
-          <div class="form-field source">
-            <label for="source">Input</label>
-            <textarea name="source" id="source"></textarea>
-          </div>
-          
-          <div class="form-field submit">
-            <label for="process">&nbsp;</label>
-            <button name="process" id="process">Process</button>
-            <button name="undo">Undo</button>
-            <button name="redo">Redo</button>
-          </div>
-          <div class="form-field target">
-            <label for="target">Output</label>
-            <textarea name="target" id="target" readonly></textarea>
-          </div>
-          
-          
-        </form>
-        
-      </main>
-      
-      
-      
-      
-      <footer class="page-footer">
-        &copy; <a href="https://www.Adonai-Reigns.life" target="_blank">www.Adonai-Reigns.life</a>
-      </footer>
-      
-      
+
+                    </select>
+                </div>
+
+                <div class="form-field source">
+                    <label for="source">Input</label>
+                    <textarea name="source" id="source"></textarea>
+                </div>
+
+                <div class="form-field submit">
+                    <label for="process">&nbsp;</label>
+                    <button name="process" id="process">Process</button>
+                    <button name="undo">Undo</button>
+                    <button name="redo">Redo</button>
+                </div>
+                <div class="form-field target">
+                    <label for="target">Output</label>
+                    <textarea name="target" id="target" readonly></textarea>
+                </div>
+
+            </form>
+
+        </main>
+
+        <footer class="page-footer">
+            &copy; <a href="https://www.Adonai-Reigns.life" target="_blank">www.Adonai-Reigns.life</a>
+        </footer>
+
     </div>
-  </body>
+</body>
+
 </html>

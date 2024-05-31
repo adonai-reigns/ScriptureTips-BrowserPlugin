@@ -1,61 +1,69 @@
-body.tools, body.index, body.acknowledgements{
+/**
+ * ScriptureTips Browser Plugin - page styles
+ */
+body.tools,
+body.index,
+body.acknowledgements {
     overflow: hidden;
 }
 
-
 .page.tools .form-field.source textarea,
-.page.tools .form-field.target textarea{
+.page.tools .form-field.target textarea {
     width: 38em;
     height: 12em;
 }
-.page.tools .form-field{
+
+.page.tools .form-field {
     padding: 0;
 }
-
-
-
 
 .page.options .page-main {
     width: 35em;
 }
 
-.page.options button{
+.page.options button {
     margin: 0.6em 0 0 0;
 }
 
-.page.options ul#servicesBible{
+.page.options ul#servicesBible {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    border-top: 1px solid rgba(21,21,119,1);
+    border-top: 1px solid rgba(21, 21, 119, 1);
 }
-.page.options ul#servicesBible li{
+
+.page.options ul#servicesBible li {
     margin: 0.5em;
     padding: 0 0.5em;
-    border: solid 1px rgba(21,21,119,1);
+    border: solid 1px rgba(21, 21, 119, 1);
     border-radius: 2em;
     background: #6ad2ec;
     width: 30em;
     position: relative;
 }
-.page.options label{
+
+.page.options label {
     width: 10em;
     margin: 0;
 }
-.page.options ul#servicesBible input[type=text].name{
+
+.page.options ul#servicesBible input[type=text].name {
     font-weight: bold;
 }
-.page.options ul#servicesBible input[type=text].translation{
+
+.page.options ul#servicesBible input[type=text].translation {
     width: 4em;
     text-align: center;
     font-weight: bold;
 }
-.page.options ul#servicesBible input[type=text].url{
-    display:block;
+
+.page.options ul#servicesBible input[type=text].url {
+    display: block;
     width: 90%;
     font-weight: bold;
 }
-.page.options ul#servicesBible button.deleteBibleService{
+
+.page.options ul#servicesBible button.deleteBibleService {
     position: absolute;
     top: 1em;
     right: 1em;
@@ -67,8 +75,9 @@ body.tools, body.index, body.acknowledgements{
     border-radius: 1em;
     padding: 1em;
 }
-.page.options button.addBibleService{
-    background-color: rgba(21,21,119,1);
+
+.page.options button.addBibleService {
+    background-color: rgba(21, 21, 119, 1);
     color: white;
     font-weight: bold;
     font-size: 1em;
@@ -76,19 +85,21 @@ body.tools, body.index, body.acknowledgements{
     border-radius: 1em;
     padding: 1em;
 }
-.page.options button.addBibleService:hover{
+
+.page.options button.addBibleService:hover {
     position: relative;
     top: -2px;
     left: -1px;
 }
 
-.page.options .tab-menu{
+.page.options .tab-menu {
     float: left;
     margin: 0;
     padding: 0;
     width: 100%;
 }
-.page.options .tab-menu li{
+
+.page.options .tab-menu li {
     float: left;
     margin: 0 0.4em 0 0;
     padding: 0.2em 0.8em;
@@ -100,40 +111,45 @@ body.tools, body.index, body.acknowledgements{
     background: rgba(230, 230, 230, 0.7);
 }
 
-.page.options .tab-menu li.active, .page.options .tab-menu li:hover{
+.page.options .tab-menu li.active,
+.page.options .tab-menu li:hover {
     background: rgba(255, 255, 255, 0.7);
     position: relative;
 }
-.page.options .tab-menu li, .page.options .tab-menu li label{
+
+.page.options .tab-menu li,
+.page.options .tab-menu li label {
     cursor: pointer;
 }
 
-.page.options .tab-content{
+.page.options .tab-content {
     border-radius: 0 0.5em 0.5em 0.5em;
     background: rgba(255, 255, 255, 0.7);
     clear: left;
     padding: 0.8em;
     display: none;
 }
-.page.options .tab-content.active{
+
+.page.options .tab-content.active {
     display: block;
 }
-.page.options pre.legend{
+
+.page.options pre.legend {
     font-size: 0.8em;
     background: white;
     padding: 1em;
     width: 90%;
-    border: solid 3px rgba(21,21,119,1);
+    border: solid 3px rgba(21, 21, 119, 1);
     border-radius: 0.6em;
 }
 
 
-.page.index main{
+.page.index main {
     position: relative;
     padding-bottom: 2em;
 }
 
-.page.index #tipDisableDomainSelector{
+.page.index #tipDisableDomainSelector {
     display: none;
     position: absolute;
     top: 0;
@@ -144,19 +160,19 @@ body.tools, body.index, body.acknowledgements{
     padding: 0;
 }
 
-.page.index #openSettingsPageLink{
+.page.index #openSettingsPageLink {
     cursor: pointer;
     position: absolute;
     left: 0;
     bottom: 0;
     text-decoration: underline;
-    color: rgba(21,21,119,1);
+    color: rgba(21, 21, 119, 1);
 }
 
-.page.index #acknowledgementsPageLink{
+.page.index #acknowledgementsPageLink {
     cursor: pointer;
     position: absolute;
     right: 0;
     bottom: 0;
-    color: rgba(21,21,119,1);
+    color: rgba(21, 21, 119, 1);
 }
