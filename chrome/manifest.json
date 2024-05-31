@@ -1,25 +1,25 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "default_locale" : "en",
   "name": "__MSG_appName__",
   "description": "__MSG_appDesc__",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "options_page" : "options.html",
   "icons" : {
         "16" : "icon-16.png",
         "48" : "icon-48.png",
         "128" : "icon-128.png"
   },
-  "browser_action": {
+  "action": {
    "default_popup": "index.html"
   },
   "permissions": [
         "storage",
-        "tabs"
+        "tabs",
+        "activeTab"
    ],
    "background" : {
-        "scripts" : ["js/background.js"],
-        "persistent" : false
+        "service_worker" : "js/service-worker.js"
    },
    "content_scripts": [
         {
@@ -28,11 +28,23 @@
                 "*://*google.com/*"
             ],
             "css": ["css/content-scripts/scripturetips.css"],
-            "js": ["js/scripturetips/Bible.js", "js/scripturetips/scripturetips.js","js/content-scripts/jquery-3.4.1.min.js", "js/content-scripts/scripturetips.js"],
+            "js": [
+                "js/scripturetips/Bible.js", 
+                "js/scripturetips/scripturetips.js",
+                "js/content-scripts/jquery-3.4.1.min.js", 
+                "js/content-scripts/scripturetips.js"
+            ],
             "all_frames" : true
         }
     ],
     "web_accessible_resources" : [
-        "css/content-scripts/*.png"
+        {
+            "resources": [
+                "css/content-scripts/*.png"
+            ],
+            "matches": [
+                "*://*/*"
+            ]
+        }
     ]
 }

@@ -36,9 +36,9 @@ var STOptionsApp = {
     this.getOption('defaultMode', function(value){
       form.mode.value = value;
     });
-    
+
     form.mode.addEventListener('change', function(event){
-      STOptionsApp.setOption('defaultMode', event.target.options[event.target.selectedIndex].value);
+       STOptionsApp.setOption('defaultMode', event.target.options[event.target.selectedIndex].value);
     });
     
     
@@ -129,6 +129,7 @@ var STOptionsApp = {
     var nameLabel = document.createElement('label');
     nameLabel.className = 'name';
     nameLabel.innerText = 'Service Name';
+
     var serviceName = document.createElement('input');
     serviceName.type = 'text';
     serviceName.className = 'name';
@@ -142,6 +143,7 @@ var STOptionsApp = {
     var urlLabel = document.createElement('label');
     urlLabel.className = 'url';
     urlLabel.innerText = 'Service URL';
+
     var serviceUrl = document.createElement('input');
     serviceUrl.type = 'text';
     serviceUrl.className = 'url';
@@ -155,6 +157,7 @@ var STOptionsApp = {
     var translationLabel = document.createElement('label');
     translationLabel.className = 'translation';
     translationLabel.innerText = 'Default Translation';
+
     var serviceTranslation = document.createElement('input');
     serviceTranslation.type = 'text';
     serviceTranslation.className = 'translation';
@@ -180,12 +183,24 @@ var STOptionsApp = {
       }
     });
 
-    serviceLi.append(nameLabel);
-    serviceLi.append(serviceName);
-    serviceLi.append(translationLabel);
-    serviceLi.append(serviceTranslation);
-    serviceLi.append(urlLabel);
-    serviceLi.append(serviceUrl);
+    var serviceNameField = document.createElement('div');
+    serviceNameField.classList = 'form-field';
+    serviceNameField.append(nameLabel);
+    serviceNameField.append(serviceName);
+    serviceLi.append(serviceNameField);
+
+    var translationField = document.createElement('div');
+    translationField.classList = 'form-field';
+    translationField.append(translationLabel);
+    translationField.append(serviceTranslation);
+    serviceLi.append(translationField);
+
+    var urlField = document.createElement('div');
+    urlField.classList = 'form-field';
+    urlField.append(urlLabel);
+    urlField.append(serviceUrl);
+    serviceLi.append(urlField);
+
     serviceLi.append(deleteButton);
 
     servicesBible.append(serviceLi);
@@ -193,6 +208,7 @@ var STOptionsApp = {
   
   
   showOptionsTab : function(scriptureName){
+    return;
     document.getElementById('BibleTab').className.replace('active', '');
     document.getElementById('QuoranTab').className.replace('active', '');
     document.getElementById('VedasTab').className.replace('active', '');
@@ -208,7 +224,7 @@ var STOptionsApp = {
   
   getOption : function(name, callbackFunction){
     try{
-      chrome.storage.sync.get(name, function(value){
+      chrome.storage.sync.get(name).then(function(value){
         callbackFunction(value[name]);
       });
     } catch(e){
@@ -220,21 +236,19 @@ var STOptionsApp = {
     try{
       var option = {};
       option[name] = value;
-      chrome.storage.sync.set(option, callbackFunction);
+      chrome.storage.sync.set(option).then(callbackFunction);
     }catch(e){
       callbackFunction(false);
     }
   }
 };
 
-
-
 document.addEventListener('DOMContentLoaded', function() {
   STOptionsApp.init();
   
-  document.getElementById('BibleTab').addEventListener('click', function(){
-    STOptionsApp.showOptionsTab('Bible');
-  });
+//   document.getElementById('BibleTab').addEventListener('click', function(){
+//     STOptionsApp.showOptionsTab('Bible');
+//   });
 //  document.getElementById('QuoranTab').addEventListener('click', function(){
 //    STOptionsApp.showOptionsTab('Quoran');
 //  });

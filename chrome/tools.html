@@ -20,7 +20,9 @@
       
       <header class="page-header">
         <h1>Scripture Tips</h1>
-      
+        <a href="options.html" title="Options" class="tools-link">
+            <img src="images/site/settings-icon-60.png" alt="Icon" width="64" height="64" />
+        </a>
       </header>
       
       
@@ -31,7 +33,7 @@
           
           <div class="form-field mode">
             <label for="mode">Mode</label>
-            <select name="mode">
+            <select name="mode" id="mode">
               <option value="BBCODE">BB Code</option>
               <option value="HTML">HTML</option>
               <option value="WIKIML">WIKI Markup Language</option>
@@ -40,7 +42,7 @@
           
           <div class="form-field mode">
             <label for="service">Service</label>
-            <select name="service">
+            <select name="service" id="service">
               <!--option value="https://www.biblegateway.com/passage/?search=ST_BIBLE_SEARCH_TOKEN&version=TLV">BibleGateway</option>
               <option value="https://biblemenus.com/search.php?q=ST_BIBLE_SEARCH_TOKEN">BibleHub</option>
               <option value="https://blueletterbible.org/search/presearch.cfm?Criteria=ST_BIBLE_SEARCH_TOKEN&t=KJV">Blue Letter Bible</option-->
@@ -50,18 +52,18 @@
           
           <div class="form-field source">
             <label for="source">Input</label>
-            <textarea name="source"></textarea>
+            <textarea name="source" id="source"></textarea>
           </div>
           
           <div class="form-field submit">
-            <label>&nbsp;</label>
-            <button name="process">Process</button>
+            <label for="process">&nbsp;</label>
+            <button name="process" id="process">Process</button>
             <button name="undo">Undo</button>
             <button name="redo">Redo</button>
           </div>
           <div class="form-field target">
             <label for="target">Output</label>
-            <textarea name="target" readonly></textarea>
+            <textarea name="target" id="target" readonly></textarea>
           </div>
           
           

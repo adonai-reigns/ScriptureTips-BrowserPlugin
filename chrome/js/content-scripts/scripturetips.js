@@ -1,5 +1,7 @@
 var STContentApp = {
   
+  currentTab: null,
+
   // system properties - overwritten at runtime
   BibleServices : null,
   BibleSearchUrl : "",
@@ -14,8 +16,8 @@ var STContentApp = {
   // for debugging
   countedList : {},
   
-  init : function(){
-    
+  init : async function(){
+
     this.scriptureTipsOptions = {
       scriptures : [
         {
@@ -36,22 +38,37 @@ var STContentApp = {
     
     ScriptureTips.init({});
     
-    chrome.runtime.sendMessage({name : 'getSTBackgroundAppData'}, function(STBackgroundAppData){
+    chrome.runtime.sendMessage({name : 'getSTBackgroundAppData'}).then(async (STBackgroundAppData)=>{
 
-      if(STBackgroundAppData.tipDisabledDomains.indexOf(window.location.hostname)>-1){
+        if(!STContentApp.currentTab){
+            return;
+        }
+
+        let currentTabUrl = new URL(STContentApp.currentTab.url);
+
+      if(STBackgroundAppData.tipDisabledDomains.indexOf(currentTabUrl.hostname)>-1){
         // we do not process this page (silently falls-through)
         
-
       }else{
 
-        chrome.storage.sync.get('BibleServices', function(dbResult){
+        await chrome.storage.sync.get('BibleServices').then(function(dbResult){
           
           STContentApp.BibleServices = dbResult.BibleServices;
           
-          chrome.storage.sync.get('defaultBibleService', function(dbResult){
+          chrome.storage.sync.get('defaultBibleService').then(function(dbResult){
             // let's hang on to the configuration settings for forming the urls.
+
             STContentApp.BibleSearchUrl = STContentApp.BibleServices[dbResult.defaultBibleService].u;
             STContentApp.BibleDefaultTranslation = STContentApp.BibleServices[dbResult.defaultBibleService].t;
+
+            for(let stOptions of STContentApp.scriptureTipsOptions.scriptures) {
+                switch(stOptions.name){
+                    case 'Bible':
+                        // update the options for the Bible scripture type
+                        stOptions.searchUrl = STContentApp.BibleServices[dbResult.defaultBibleService].u;
+                        stOptions.translation = STContentApp.BibleServices[dbResult.defaultBibleService].t;
+                }
+            };
 
             // run on the whole page to begin with
             //var allTags = document.getElementsByTagName('*'); // non-jQuery (heavy, slow)
@@ -166,8 +183,21 @@ var STContentApp = {
 };
 
 
+chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
+    if (message.message === "currentTab") {
+        if(message.tab){
+            STContentApp.currentTab = message.tab;
+            // run the app
+            STContentApp.init();
+        }
+    }
+});
 
-// run the app
-STContentApp.init();
+
+jQuery(document).ready(() => {
+    chrome.runtime.sendMessage({name:'getCurrentTab'});
+});
+
+
 
 

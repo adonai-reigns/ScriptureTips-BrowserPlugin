@@ -5,7 +5,7 @@ var STBackgroundApp = {
   tipDisabledDomains : [],
   
   init : function(){
-    chrome.storage.sync.get('tipDisabledDomains', function(dbResponse){
+    chrome.storage.sync.get('tipDisabledDomains').then(function(dbResponse){
       STBackgroundApp.tipDisabledDomains = dbResponse.tipDisabledDomains;
     });
   }
@@ -14,7 +14,7 @@ var STBackgroundApp = {
 
 
 
-chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
+chrome.runtime.onMessage.addListener(async function(message, sender, sendResponse) {
   if(message.name === 'getSTBackgroundAppData') {
     sendResponse({
       currentUrl : STBackgroundApp.currentUrl,
@@ -24,7 +24,7 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
   }
   
   if(message.name === 'updateTipDisabledDomains') {
-    chrome.storage.sync.get('tipDisabledDomains', function(dbResponse){
+    await chrome.storage.sync.get('tipDisabledDomains').then(function(dbResponse){
       STBackgroundApp.tipDisabledDomains = dbResponse.tipDisabledDomains;
     });
   }
@@ -32,23 +32,26 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
     if(STBackgroundApp.tipDisabledDomains.indexOf(message.domainName)<0){
       STBackgroundApp.tipDisabledDomains.push(message.domainName);
     }
-    chrome.storage.sync.set({tipDisabledDomains : STBackgroundApp.tipDisabledDomains});
+    chrome.storage.sync.set({tipDisabledDomains : STBackgroundApp.tipDisabledDomains}).then((response) => true);
   }
   if(message.name === 'removeTipDisabledDomain') {
     while(STBackgroundApp.tipDisabledDomains.indexOf(message.domainName)>-1){
       STBackgroundApp.tipDisabledDomains.splice(STBackgroundApp.tipDisabledDomains.indexOf(message.domainName), 1);
     }
-    chrome.storage.sync.set({tipDisabledDomains : STBackgroundApp.tipDisabledDomains});
+    chrome.storage.sync.set({tipDisabledDomains : STBackgroundApp.tipDisabledDomains}).then((response)=>true);
+  }
+
+  if(message.name === 'getCurrentTab'){
+    let tabs = await chrome.tabs.query({"active": true, "currentWindow": true});
+    chrome.tabs.sendMessage(tabs[0].id, { message: "currentTab", tab: tabs[0] ?? null});
   }
   
 });
  
- 
- 
+
  
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab){
-  
-  
+
     if(typeof(tab.url) === 'string'){
       if(tab.highlighted){
         // only process changes to the current active tab
@@ -60,10 +63,9 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab){
           STBackgroundApp.currentDomain = '';
         }
         
-        
+
       }
     }
-  
   
 });
 
